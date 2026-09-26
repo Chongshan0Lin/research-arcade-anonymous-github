@@ -1,0 +1,13 @@
+stage,csc_label,csc_value,lse_label,lse_value
+raw candidate units,paragraph-citation edges,1200010,source papers considered,41054
+targets resolved to corpus,resolved arXiv target,957831,,
+distinct units after resolution,distinct paragraphs,165555,eligible sources (rules E1-E5),27267
+dropped: temporal,future-dated target,2358,,
+dropped: context quality,context too short,2351,,
+target-set size admissible,bundle size 2-5,60298,,
+constructed instances,instances built,57947,,
+test split,test,8464,screen split,909
+frozen: fixed retrieval,general slice,5000,frozen sources,1200
+frozen: agent evaluation,agent subset,150,agent subset,150
+held-out development ids,dev ids,60,dev split,291
+temporal / source-edge leakage violations,audited,0,audited,0

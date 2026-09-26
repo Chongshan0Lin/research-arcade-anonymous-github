@@ -1,0 +1,105 @@
+{
+ "task": "literature_set_expansion",
+ "generated_at": "2026-09-25T09:45:38+00:00",
+ "git_commit": "2631ae6d320009d828da4d451556241f7359fde2",
+ "weak_supervision_statement": "Labels are the source paper's own resolved earlier references. An author's bibliography is INCOMPLETE and SELECTIVE; this is a reproducible WEAK relevance label, NOT exhaustive ground truth. Absolute recall understates true topical recall. Only paired between-arm differences on identical label sets are interpretable as system comparisons.",
+ "predeclared_rules": {
+  "eligibility": {
+   "E1": "in corpus, parseable date, non-empty title, abstract >= 200 chars",
+   "E2": "n_gold >= 5",
+   "E3": "n_gold <= 200",
+   "E4": "unresolved_rate < 0.9",
+   "E5": "at least one bibliography entry in the resolution table"
+  },
+  "query": "title + abstract, LaTeX cite commands / [CITATION] markers / bracketed numeric citation runs removed; introduction text excluded by predeclared rule",
+  "temporal": "candidate legal iff date known and <= source cutoff (candidate_utility._legal)",
+  "source_edge_removal": "blocked nodes = {paper:S} U {paragraph nodes owned by S}; traversal may neither enter nor leave a blocked node",
+  "splits": "by source paper (one instance per source) plus a grouped 20/80 dev/screen split on (year, primary arXiv category) clusters",
+  "retrieval": {
+   "budget_K": 50,
+   "seeds": 10,
+   "max_hops": 3,
+   "per_node_cap": 25,
+   "fusion": "RRF k=60",
+   "no_padding": true
+  },
+  "semantic_arm": "NOT AVAILABLE: no paper-level title+abstract vector index exists in the repository; building one is out of scope for this CPU-only stage"
+ },
+ "corpus": {
+  "n_papers": 65328,
+  "graph_full_sha256": "c2af169a5ca669af6b9f362cd1fef8a13151a4f28ec8206905f6be324a37c83b",
+  "graph_rewire_sha256": "372a7c56907cf4cd2bf17d715f683a3116af6656766f6a79f0979863692dd33a",
+  "citation_resolution_sha256": "b8a31540fa33f8b9b35ab914f9e3d6a2192b7fe99b2e41f4cc9ab36e4741ed57"
+ },
+ "funnel": {
+  "sources_considered": 41054,
+  "eligible": 27267,
+  "frozen": 1200,
+  "dev": 291,
+  "screen": 909,
+  "exclusion_histogram": {
+   "E2_too_few_gold|E4_unresolved_rate": 8887,
+   "E2_too_few_gold": 3712,
+   "E4_unresolved_rate": 1181,
+   "E1_abstract_too_short|E2_too_few_gold": 2,
+   "E1_abstract_too_short|E2_too_few_gold|E4_unresolved_rate": 3,
+   "E3_too_many_gold": 1,
+   "E1_abstract_too_short": 1
+  }
+ },
+ "unresolved_reference_rates": {
+  "mean_over_considered": 0.7541,
+  "mean_over_frozen": 0.68
+ },
+ "gold_cross_check": {
+  "frozen_sources_whose_gold_equals_graph_cites_out": 1108,
+  "n_frozen": 1200,
+  "note": "gold is recomputed from citation_resolution.csv + corpus + temporal filter; the graph's cites out-edges are an independent cross-check only and are REMOVED from every traversal by rule T3"
+ },
+ "gold_size": {
+  "mean": 16.57,
+  "median": 14,
+  "min": 5,
+  "max": 88
+ },
+ "freeze": {
+  "seed": 20260925,
+  "target_n": 1200,
+  "n_frozen": 1200,
+  "frozen_ids_path": "results/graph_autoresearch/graphauto_20260925_035919_027d9a/literature_set_expansion/frozen_ids.jsonl",
+  "frozen_ids_sha256": "5b7eadacd40f892a0f918cef4510649059f01ee11d2c8fa93ca4384a509e4553",
+  "frozen_ids_sha256_short": "5b7eadacd40f892a",
+  "frozen_ids_only_sha256": "3bdbdf3081d96b181781b00f43df0bf5b3412242aa94271fc4d3d135fa7a2119"
+ },
+ "n_clusters": 116,
+ "n_dev_clusters": 13,
+ "graph_identity": {
+  "rule": "T0: paper node identity is resolved on the version-stripped base id at adjacency-build time, identically in every graph variant",
+  "raw_graph_exposure": {
+   "raw_paper_nodes": 52307,
+   "distinct_base_ids": 46096,
+   "versioned_paper_nodes": 6211,
+   "base_ids_present_under_both_spellings": 6198,
+   "edges_touching_a_versioned_paper_id": {
+    "has_paragraph": 73178
+   }
+  },
+  "frozen_set_exposure_under_a_literal_id_mask": {
+   "sources_owning_paragraphs_under_a_versioned_id": 223,
+   "n_frozen": 1200,
+   "fraction": 0.1858,
+   "source_owned_paragraph_nodes_left_unmasked": 3070,
+   "consequence": "without T0 those source paragraphs stay live, so a traversal can reach a paper the source cites, step back into the source's own paragraph, and step forward to every other paper cited there -- source-derived co-citation leakage forbidden by runbook 4.2",
+   "status": "NEUTRALISED by T0 in this (v2) build"
+  },
+  "note": "the direct cites source->gold edges were never affected: 0 of the cites edges carry a version suffix; the leak channel was has_paragraph/para_cites only"
+ },
+ "refreeze": {
+  "reason": "the shared citation graph mixed arXiv id spellings, defeating literal-id source-edge masking; construction was rebuilt from scratch after fixing identity resolution (rule T0). The re-freeze was NOT performed on the basis of any observed arm performance.",
+  "superseded_artifacts_preserved_in": "superseded_v1/",
+  "superseded_frozen_ids_sha256": "5b7eadacd40f892a0f918cef4510649059f01ee11d2c8fa93ca4384a509e4553",
+  "eligibility_depends_on_graph": false,
+  "note": "eligibility and sampling use only the `papers` table and citation_resolution.csv, so the frozen id set is expected to be unchanged by the graph fix; compare freeze.frozen_ids_sha256 with superseded_frozen_ids_sha256",
+  "frozen_ids_unchanged": true
+ }
+}

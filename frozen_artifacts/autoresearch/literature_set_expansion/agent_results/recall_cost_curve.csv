@@ -1,0 +1,13 @@
+model,condition,n,metric,mean_recall,mean_retrieval_calls,mean_observation_tokens,recall_per_retrieval_call,recall_per_1k_observation_tokens
+qwen2.5-7b-instruct,correct_snowballing_agent,150,recall@50,0.146672,6.113,3393.5,0.023992,0.043221
+qwen2.5-7b-instruct,rewired_snowballing_agent,150,recall@50,0.080639,6.467,3599.4,0.01247,0.022404
+qwen3-8b,bm25_fixed_list,150,recall@50,0.176391,0.0,4122.5,,0.042787
+qwen3-8b,compact_hybrid_literature_agent,150,recall@50,0.280984,7.267,5370.1,0.038667,0.052323
+qwen3-8b,correct_hybrid_fixed_list,150,recall@50,0.423075,0.0,4028.0,,0.105034
+qwen3-8b,correct_snowballing_agent,150,recall@50,0.175342,7.34,5280.5,0.023889,0.033205
+qwen3-8b,flat_literature_agent,150,recall@50,0.123127,6.413,5011.3,0.019199,0.02457
+qwen3-8b,matched_pool_replay::compact_hybrid_literature_agent,150,recall@50,0.28893,0.0,5370.1,,0.053803
+qwen3-8b,matched_pool_replay::correct_snowballing_agent,150,recall@50,0.179934,0.0,5280.5,,0.034075
+qwen3-8b,matched_pool_replay::flat_literature_agent,150,recall@50,0.12335,0.0,5011.3,,0.024614
+qwen3-8b,matched_pool_replay::rewired_snowballing_agent,150,recall@50,0.113123,0.0,5323.2,,0.021251
+qwen3-8b,rewired_snowballing_agent,150,recall@50,0.110952,7.427,5323.2,0.01494,0.020843

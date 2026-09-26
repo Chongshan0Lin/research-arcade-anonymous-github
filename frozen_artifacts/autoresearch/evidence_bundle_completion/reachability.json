@@ -1,0 +1,22 @@
+[
+ {
+  "slice": "general",
+  "n_instances": 5000,
+  "n_targets": 8731,
+  "target_reachable_1hop_correct": 0.43523078685144884,
+  "target_reachable_2hop_correct": 0.9104340854426756,
+  "target_reachable_2hop_rewired": 0.518611842858779,
+  "target_reachable_under_tool_budget": 0.7039285305234223,
+  "anchor_in_graph_rate": 1.0
+ },
+ {
+  "slice": "graphhard",
+  "n_instances": 3494,
+  "n_targets": 6755,
+  "target_reachable_1hop_correct": 0.4421909696521095,
+  "target_reachable_2hop_correct": 0.9538119911176905,
+  "target_reachable_2hop_rewired": 0.5752775721687639,
+  "target_reachable_under_tool_budget": 0.7298297557364914,
+  "anchor_in_graph_rate": 1.0
+ }
+]

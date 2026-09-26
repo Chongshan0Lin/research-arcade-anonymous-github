@@ -1,0 +1,13 @@
+model,condition,n,gold_total,gold_observed,gold_opened,gold_selected,gold_observed_rate,gold_selected_rate,mean_calls_to_first_gold
+qwen2.5-7b-instruct,correct_snowballing_agent,150,2535,600,0,384,0.2367,0.1515,1.645
+qwen2.5-7b-instruct,rewired_snowballing_agent,150,2535,290,0,186,0.1144,0.0734,1.766
+qwen3-8b,bm25_fixed_list,150,2535,421,0,421,0.1661,0.1661,0.0
+qwen3-8b,compact_hybrid_literature_agent,150,2535,656,0,644,0.2588,0.254,1.211
+qwen3-8b,correct_hybrid_fixed_list,150,2535,994,0,994,0.3921,0.3921,0.0
+qwen3-8b,correct_snowballing_agent,150,2535,428,14,415,0.1688,0.1637,1.605
+qwen3-8b,flat_literature_agent,150,2535,285,2,284,0.1124,0.112,1.455
+qwen3-8b,matched_pool_replay::compact_hybrid_literature_agent,150,2535,656,0,656,0.2588,0.2588,0.0
+qwen3-8b,matched_pool_replay::correct_snowballing_agent,150,2535,426,0,426,0.168,0.168,0.0
+qwen3-8b,matched_pool_replay::flat_literature_agent,150,2535,285,0,285,0.1124,0.1124,0.0
+qwen3-8b,matched_pool_replay::rewired_snowballing_agent,150,2535,279,0,279,0.1101,0.1101,0.0
+qwen3-8b,rewired_snowballing_agent,150,2535,281,16,272,0.1108,0.1073,1.459

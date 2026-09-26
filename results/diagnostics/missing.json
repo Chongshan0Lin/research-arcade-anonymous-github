@@ -1,0 +1,32 @@
+[
+ {
+  "table": "t1_data_funnel",
+  "quantity": "per-stage temporal/context drop counts for Literature Set Expansion",
+  "artifact_that_would_be_needed": "litexp records exclusions as a combined rule histogram (funnel.exclusion_histogram in construction_manifest.json), not as sequential stages; the per-rule counts are reported there instead"
+ },
+ {
+  "table": "t2_fixed_retrieval",
+  "quantity": "MAP for Citation Set Completion",
+  "artifact_that_would_be_needed": "not computed by ebc_screen; would need a re-run of the CPU screening aggregation"
+ },
+ {
+  "table": "t2_fixed_retrieval",
+  "quantity": "nDCG for Citation Set Completion",
+  "artifact_that_would_be_needed": "not computed by ebc_screen (set-valued task used set recall / set F1 instead)"
+ },
+ {
+  "table": "t2_fixed_retrieval",
+  "quantity": "semantic-retrieval arm for Literature Set Expansion",
+  "artifact_that_would_be_needed": "no paper-level title+abstract dense index exists in the repository"
+ },
+ {
+  "table": "t4_access_and_tools",
+  "quantity": "identical-answer rate across graph perturbations",
+  "artifact_that_would_be_needed": "not logged per episode pair; recomputable from episodes/*.jsonl by joining correct and rewired rows on instance_id and comparing `ranked`"
+ },
+ {
+  "table": "t5_efficiency_faithfulness",
+  "quantity": "latency for Literature Set Expansion",
+  "artifact_that_would_be_needed": "mean_latency_ms not emitted by litexp_aggregate; per-episode latency_ms is present in literature_set_expansion/agent_results/episodes/*.jsonl"
+ }
+]

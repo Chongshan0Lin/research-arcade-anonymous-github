@@ -1,0 +1,9 @@
+model,condition,n,mean_tool_calls,mean_successful_calls,attempted,parsed,dispatched,succeeded,blocked,failed,malformed,repairs,premature_finalize_refusals,forced_final,traverse_uptake,hybrid_uptake
+qwen2.5-7b-instruct,compact_hybrid_controlled_agent,200,5.265,5.22,1263,1175,1053,1044,0,9,17,10,0,71,0.0,0.99
+qwen2.5-7b-instruct,correct_graph_controlled_agent,200,5.42,5.375,1294,1225,1084,1075,0,9,18,9,1,51,0.975,0.0
+qwen2.5-7b-instruct,flat_controlled_agent,200,5.01,5.005,1219,1127,1002,1001,0,1,32,17,0,60,0.0,0.0
+qwen2.5-7b-instruct,rewired_graph_controlled_agent,200,5.895,5.86,1390,1286,1179,1172,0,7,20,10,1,84,0.975,0.0
+qwen3-8b,compact_hybrid_controlled_agent,200,5.545,5.54,1310,1223,1109,1108,0,1,3,2,0,84,0.0,0.995
+qwen3-8b,correct_graph_controlled_agent,200,3.86,3.855,982,966,772,771,0,1,1,1,10,15,0.98,0.0
+qwen3-8b,flat_controlled_agent,200,5.145,5.145,1232,1150,1029,1029,0,0,7,4,0,75,0.0,0.0
+qwen3-8b,rewired_graph_controlled_agent,200,4.085,4.08,1027,1007,817,816,0,1,1,1,10,19,0.98,0.0

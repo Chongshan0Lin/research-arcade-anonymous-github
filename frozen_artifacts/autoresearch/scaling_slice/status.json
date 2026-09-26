@@ -1,0 +1,1 @@
+{"decision":"completed","reason":"Qwen2.5-32B-Instruct-GPTQ-Int4 was already local and loaded safely on a reserved idle GPU without displacing higher-priority runs","n":50,"models":["qwen2.5-32b-instruct"],"natural_tool_uptake":0.0,"controlled_tool_uptake":1.0,"exploratory":true}

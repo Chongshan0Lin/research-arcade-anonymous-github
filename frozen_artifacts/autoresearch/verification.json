@@ -1,0 +1,79 @@
+{
+ "all_passed": true,
+ "n_passed": 13,
+ "n_failed": 0,
+ "n_skipped": 1,
+ "checks": [
+  {
+   "check": "previous canonical run preserved",
+   "passed": null,
+   "skipped": true,
+   "detail": "results/agentic_autoresearch/20260924_182602_a26e2e is not bundled in this release; checkable only in the source tree"
+  },
+  {
+   "check": "frozen split hashes recorded",
+   "passed": true,
+   "detail": "{'controlled_task_a': {'path': 'results/agentic_autoresearch/20260924_182602_a26e2e/frozen_ids.jsonl', 'sha256_16': 'ec357bef29eece81', 'note': 'reused verbatim from the natural-action run so the two interfaces are directly comparable'}, 'evidence_bundle_completion_screen': {'path': 'results/graph_autoresearch/graphauto_20260925_035919_027d9a/evidence_bundle_completion/frozen_ids.jsonl', 'sha256': '063b66b0ca51897f9b02c8447b1698c2b01c564d355787e68b1b89a79f4b3548', 'n': 5000}, 'evidence_bundle_completion_agent': {'path': 'results/graph_autoresearch/graphauto_20260925_035919_027d9a/evidence_bundle_completion/agent_results/agent_frozen_ids.jsonl', 'sha256': '2849d46ced72ed931b5a2b84646fcbc35a7bd783e5ae457be953ba0a74b5fd0d', 'n': 150}, 'literature_set_expansion_screen': {'path': 'results/graph_autoresearch/graphauto_20260925_035919_027d9a/literature_set_expansion/frozen_ids.jsonl', 'sha256': '5b7eadacd40f892a0f918cef4510649059f01ee11d2c8fa93ca4384a509e4553', 'n': 1200}, 'literature_set_expansion_agent': {'path': 'results/graph_autoresearch/graphauto_20260925_035919_027d9a/literature_set_expansion/agent_results/agent_frozen_ids.jsonl', 'sha256': '23429f6159c50b82f170b32f87a089e304085b4a5c7c8b0a078f384fc3de7f15', 'n': 150}, 'scaling_slice': {'path': 'results/graph_autoresearch/graphauto_20260925_035919_027d9a/scaling_slice/frozen_ids.jsonl', 'sha256': '0d6aeb4568262ea472c19e2d15b46e0a900a4cbe445d11e11d66a9185b46502d', 'n': 50}, 'a2_audited_pass': {'path': 'results/graph_autoresearch/graphauto_20260925_035919_027d9a/a2/audited_pass_ids.jsonl', 'sha256': '34b25e00af728a7d6e294665a7924be81806b17e629cf8e2236c8322ac1a851c', 'n': 10, 'note': '10 audit-passing instances; NOT a frozen confirmatory set (runbook 5.2 descriptive only)'}}"
+  },
+  {
+   "check": "identical IDs across paired conditions",
+   "passed": true,
+   "detail": "8 agent cells, sizes [200]"
+  },
+  {
+   "check": "no duplicate episode keys",
+   "passed": true,
+   "detail": "0 duplicates"
+  },
+  {
+   "check": "one terminal row per expected episode",
+   "passed": true,
+   "detail": "{'qwen2.5-7b-instruct/bm25_one_shot_ctrl': 200, 'qwen2.5-7b-instruct/correct_graph_controlled_agent': 200, 'qwen2.5-7b-instruct/compact_hybrid_controlled_agent': 200, 'qwen2.5-7b-instruct/flat_controlled_agent': 200, 'qwen2.5-7b-instruct/rewired_graph_controlled_agent': 200, 'qwen2.5-7b-instruct/correct_hybrid_one_shot_ctrl': 200, 'qwen3-8b/flat_controlled_agent': 200, 'qwen3-8b/bm25_one_shot_ctrl': 200, 'qwen3-8b/rewired_graph_controlled_agent': 200, 'qwen3-8b/correct_graph_controlled_agent': 200, 'qwen3-8b/compact_hybrid_controlled_agent': 200, 'qwen3-8b/correct_hybrid_one_shot_ctrl': 200}"
+  },
+  {
+   "check": "graph hashes differ",
+   "passed": true,
+   "detail": "{'c33f0afd190858f3'} vs {'0232ea9a6a878502'}"
+  },
+  {
+   "check": "degree preservation holds",
+   "passed": true,
+   "detail": "{'1ee5994e832b330b'} vs {'1ee5994e832b330b'}"
+  },
+  {
+   "check": "correct/rewired prompts and tool schemas match",
+   "passed": true,
+   "detail": "198 distinct each"
+  },
+  {
+   "check": "all cited evidence joins to observed evidence",
+   "passed": true,
+   "detail": "0 violations"
+  },
+  {
+   "check": "blocked calls returned no candidates",
+   "passed": true,
+   "detail": "0 contaminating calls"
+  },
+  {
+   "check": "no out-of-interface tool executed",
+   "passed": true,
+   "detail": "0 executions"
+  },
+  {
+   "check": "matched-pool hashes match logged observed pools",
+   "passed": true,
+   "detail": "0 mismatches of 2400 replays"
+  },
+  {
+   "check": "manipulation uptake gate passed for reported agent comparisons",
+   "passed": true,
+   "detail": "smoke gate passed=True"
+  },
+  {
+   "check": "git diff --check passes",
+   "passed": true,
+   "detail": ""
+  }
+ ]
+}

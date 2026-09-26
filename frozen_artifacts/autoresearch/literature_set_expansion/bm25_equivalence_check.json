@@ -1,0 +1,6 @@
+{
+ "n_queries": 5,
+ "exact_order_match_rate": 1.0,
+ "mean_topk_set_overlap": 1.0,
+ "note": "FastBM25 is a vectorised scorer built from the reference environment.BM25 index (same idf/tf/length normalisation and the same per-unique-query-term summation)."
+}

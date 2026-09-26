@@ -1,0 +1,7 @@
+model,condition,n,mean_graph_only_gold,episodes_with_graph_only_gold,unique_graph_only_gold,graph_backing
+qwen2.5-7b-instruct,correct_snowballing_agent,150,1.84,68,179,full
+qwen2.5-7b-instruct,rewired_snowballing_agent,150,0.4533,41,39,rewire
+qwen3-8b,flat_literature_agent,150,0.0,0,0,
+qwen3-8b,correct_snowballing_agent,150,1.06,63,137,full
+qwen3-8b,rewired_snowballing_agent,150,0.08,12,10,rewire
+qwen3-8b,compact_hybrid_literature_agent,150,4.2933,140,433,full

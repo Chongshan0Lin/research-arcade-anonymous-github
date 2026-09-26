@@ -1,0 +1,7 @@
+model,condition,n,gold_found_not_found_by_flat,rate
+qwen2.5-7b-instruct,correct_graph_controlled_agent,200,31,0.155
+qwen2.5-7b-instruct,rewired_graph_controlled_agent,200,8,0.04
+qwen2.5-7b-instruct,compact_hybrid_controlled_agent,200,43,0.215
+qwen3-8b,correct_graph_controlled_agent,200,20,0.1
+qwen3-8b,rewired_graph_controlled_agent,200,4,0.02
+qwen3-8b,compact_hybrid_controlled_agent,200,38,0.19

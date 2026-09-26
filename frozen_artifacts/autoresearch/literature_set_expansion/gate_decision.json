@@ -1,0 +1,68 @@
+{
+ "task": "literature_set_expansion",
+ "decided_at": "2026-09-25T10:33:17+00:00",
+ "git_commit": "2631ae6d320009d828da4d451556241f7359fde2",
+ "rule": "launch literature agents only if correct hybrid exceeds BM25 by >= 0.05 absolute Recall@50 AND exceeds the rewired hybrid by >= 0.05 absolute Recall@50, with positive paired 95% CIs for BOTH differences, and zero temporal/source-edge leakage (runbook 4.3 / stopping rule 9.5)",
+ "primary_subset": "screen",
+ "by_subset": {
+  "screen": {
+   "criteria": {
+    "hybrid_correct_minus_bm25_recall50": 0.235252,
+    "hybrid_correct_minus_bm25_ci": [
+     0.224463,
+     0.246035
+    ],
+    "hybrid_correct_minus_rewired_recall50": 0.175012,
+    "hybrid_correct_minus_rewired_ci": [
+     0.164373,
+     0.185845
+    ],
+    "n_paired": 909
+   },
+   "checks": {
+    "beats_bm25_by_0_05": true,
+    "beats_rewired_hybrid_by_0_05": true,
+    "positive_ci_vs_bm25": true,
+    "positive_ci_vs_rewired": true,
+    "zero_leakage": true
+   },
+   "decision": "PASS"
+  },
+  "frozen_all": {
+   "criteria": {
+    "hybrid_correct_minus_bm25_recall50": 0.238354,
+    "hybrid_correct_minus_bm25_ci": [
+     0.228999,
+     0.247691
+    ],
+    "hybrid_correct_minus_rewired_recall50": 0.17905,
+    "hybrid_correct_minus_rewired_ci": [
+     0.169712,
+     0.188208
+    ],
+    "n_paired": 1200
+   },
+   "checks": {
+    "beats_bm25_by_0_05": true,
+    "beats_rewired_hybrid_by_0_05": true,
+    "positive_ci_vs_bm25": true,
+    "positive_ci_vs_rewired": true,
+    "zero_leakage": true
+   },
+   "decision": "PASS"
+  }
+ },
+ "leakage_audit": {
+  "future_candidates": 0,
+  "source_in_results": 0,
+  "source_edges_blocked_total": 44346,
+  "instances_with_blocked_nodes": 1200,
+  "n_instances": 1200,
+  "zero_violations": true
+ },
+ "decision": "PASS",
+ "agents_launched": false,
+ "agent_action": "PROCEED to 4.4 (GPU stage, owned by another process)",
+ "frozen_ids_sha256": "5b7eadacd40f892a0f918cef4510649059f01ee11d2c8fa93ca4384a509e4553",
+ "weak_label_caveat": "Recall is measured against the source paper's own bibliography, an incomplete and selective weak relevance label, not exhaustive ground truth. The gate is a decision rule on PAIRED differences under that identical label set."
+}

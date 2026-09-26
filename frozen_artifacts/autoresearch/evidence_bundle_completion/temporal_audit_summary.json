@@ -1,0 +1,20 @@
+{
+ "generated_at": "2026-09-25T09:34:14+00:00",
+ "n_instances": 5000,
+ "totals": {
+  "future_candidate": 0,
+  "source_paper_candidate": 0,
+  "anchor_returned_as_candidate": 0,
+  "source_owned_candidate": 0,
+  "illegal_witness": 0,
+  "instances_with_unmasked_source_node": 0,
+  "instances_with_unmasked_eval_paragraph": 0,
+  "instances_with_illegal_anchor": 0,
+  "instances_with_illegal_target": 0,
+  "candidates_audited": 2204525,
+  "total_violations": 0
+ },
+ "zero_violations": true,
+ "audit_csv": "$RESULT_ROOT/evidence_bundle_completion/temporal_audit.csv",
+ "audit_csv_sha256": "3b6bd842c94c511b8efffd9c7d11628167867d5e9939cd4225c4aef970c14ef6"
+}

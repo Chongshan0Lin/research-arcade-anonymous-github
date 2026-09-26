@@ -1,0 +1,65 @@
+{
+ "note": "mutually exclusive primary categories; overlapping diagnostic flags are in the per-episode rows",
+ "weak_label_note": "Scored against the source paper's own resolved earlier references: an incomplete and selective weak relevance label, not exhaustive ground truth. Absolute recall understates true topical recall; only paired between-condition differences are interpretable.",
+ "taxonomy": {
+  "qwen2.5-7b-instruct|correct_snowballing_agent": {
+   "partially_correct": 70,
+   "invalid_answer_parser_failure": 68,
+   "gold_absent_from_all_retrieved": 11,
+   "invalid::budget_exhausted": 1
+  },
+  "qwen2.5-7b-instruct|rewired_snowballing_agent": {
+   "gold_absent_from_all_retrieved": 22,
+   "invalid_answer_parser_failure": 53,
+   "partially_correct": 73,
+   "invalid::budget_exhausted": 1,
+   "gold_observed_but_not_selected": 1
+  },
+  "qwen3-8b|bm25_fixed_list": {
+   "partially_correct": 122,
+   "gold_absent_from_all_retrieved": 27,
+   "all_gold_recovered": 1
+  },
+  "qwen3-8b|compact_hybrid_literature_agent": {
+   "partially_correct": 140,
+   "invalid_answer_parser_failure": 2,
+   "gold_absent_from_all_retrieved": 8
+  },
+  "qwen3-8b|correct_hybrid_fixed_list": {
+   "partially_correct": 145,
+   "all_gold_recovered": 2,
+   "gold_absent_from_all_retrieved": 3
+  },
+  "qwen3-8b|correct_snowballing_agent": {
+   "gold_absent_from_all_retrieved": 31,
+   "partially_correct": 117,
+   "invalid_answer_parser_failure": 2
+  },
+  "qwen3-8b|flat_literature_agent": {
+   "gold_absent_from_all_retrieved": 36,
+   "partially_correct": 112,
+   "invalid_answer_parser_failure": 2
+  },
+  "qwen3-8b|rewired_snowballing_agent": {
+   "gold_absent_from_all_retrieved": 41,
+   "partially_correct": 107,
+   "invalid_answer_parser_failure": 2
+  },
+  "qwen3-8b|matched_pool_replay::compact_hybrid_literature_agent": {
+   "partially_correct": 142,
+   "gold_absent_from_all_retrieved": 8
+  },
+  "qwen3-8b|matched_pool_replay::correct_snowballing_agent": {
+   "gold_absent_from_all_retrieved": 31,
+   "partially_correct": 119
+  },
+  "qwen3-8b|matched_pool_replay::flat_literature_agent": {
+   "gold_absent_from_all_retrieved": 38,
+   "partially_correct": 112
+  },
+  "qwen3-8b|matched_pool_replay::rewired_snowballing_agent": {
+   "gold_absent_from_all_retrieved": 41,
+   "partially_correct": 109
+  }
+ }
+}

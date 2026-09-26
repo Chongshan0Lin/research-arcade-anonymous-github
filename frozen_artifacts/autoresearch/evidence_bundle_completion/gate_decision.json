@@ -1,0 +1,114 @@
+{
+ "task": "evidence_bundle_completion",
+ "gate": "EBC agent-launch gate (runbook 3.4)",
+ "generated_at": "2026-09-25T09:34:14+00:00",
+ "git_commit": "2631ae6d320009d828da4d451556241f7359fde2",
+ "decision": "PASS",
+ "stopped_not_failed": false,
+ "action": "EBC agent experiment (runbook 3.5) may proceed",
+ "declared_primary_comparison": "hybrid_correct - hybrid_rewired @ macro target recall@20 (declared before any arm was executed)",
+ "criteria": {
+  "c1_delta_recall20_ge_0_05": {
+   "passed": true,
+   "threshold": 0.05,
+   "graph_correct_minus_rewired": 0.4567833333333333,
+   "hybrid_correct_minus_rewired": 0.29065,
+   "met_by": "both"
+  },
+  "c2_primary_ci_strictly_positive": {
+   "passed": true,
+   "ci": [
+    0.2789,
+    0.3026
+   ],
+   "diff": 0.29065,
+   "p_raw": 9.999000099990002e-05,
+   "p_adj_holm": 0.00019998000199980003,
+   "n_paired": 5000,
+   "n_boot": 10000,
+   "boot_seed": 20260925
+  },
+  "c3_graphhard_reachability_ge_0_30": {
+   "passed": true,
+   "threshold": 0.3,
+   "observed": 0.7298297557364914,
+   "n_graphhard_instances": 3494,
+   "n_graphhard_targets": 6755,
+   "tool_budget": {
+    "calls": 8,
+    "candidates_per_call": 10,
+    "observable_pool": 80
+   }
+  },
+  "c4_zero_temporal_leakage": {
+   "passed": true,
+   "totals": {
+    "future_candidate": 0,
+    "source_paper_candidate": 0,
+    "anchor_returned_as_candidate": 0,
+    "source_owned_candidate": 0,
+    "illegal_witness": 0,
+    "instances_with_unmasked_source_node": 0,
+    "instances_with_unmasked_eval_paragraph": 0,
+    "instances_with_illegal_anchor": 0,
+    "instances_with_illegal_target": 0,
+    "candidates_audited": 2204525,
+    "total_violations": 0
+   }
+  }
+ },
+ "reasons": [
+  "all four criteria met"
+ ],
+ "frozen": {
+  "general_n": 5000,
+  "graphhard_n": 3494,
+  "general_ids_sha256": "89942a2ae3449deabb291f4de105752562f8cd49dbc8d0d5af006c81a6623606",
+  "graphhard_ids_sha256": "4de71d9d85625aa0d405f1479e6ba155a52021220ac4dcc4e53c4de435b72ab5",
+  "frozen_ids_file_sha256": "063b66b0ca51897f9b02c8447b1698c2b01c564d355787e68b1b89a79f4b3548"
+ },
+ "parameters": {
+  "ebc_seed": 20260925,
+  "min_citations": 2,
+  "max_citations": 5,
+  "min_context_tokens": 40,
+  "max_hops": 2,
+  "k_final": 50,
+  "ks": [
+   5,
+   10,
+   20
+  ],
+  "rrf_k": 60,
+  "adamic_adar_one_hop_bonus": 2.0,
+  "tool_budget_calls": 8,
+  "candidates_per_call": 10,
+  "budget_pool": 80,
+  "bm25_hard_topk": 20,
+  "graphhard_max_hops": 2,
+  "n_boot": 10000,
+  "boot_seed": 20260925,
+  "split_fractions": [
+   0.7,
+   0.15,
+   0.15
+  ],
+  "max_screening_instances": 5000,
+  "connectivity": "untyped (relation labels ignored; identical to the `untyped` variant)",
+  "correct_graph": "citation_graph_full.jsonl",
+  "rewired_graph": "citation_graph_rewire.jsonl (degree-preserving, pre-existing, reused)",
+  "date_granularity": "day (papers.submit_date is a DATE); availability test is date(x) <= date(t_s)",
+  "proximity_score": "Adamic-Adar over <=2 hops from the anchor + fixed bonus for 1-hop neighbours"
+ },
+ "arms": [
+  "bm25",
+  "graph_correct",
+  "hybrid_correct",
+  "graph_rewired",
+  "hybrid_rewired",
+  "graph_random_anchor",
+  "hybrid_random_anchor",
+  "graph_degree_matched_anchor",
+  "anchor_text_only"
+ ]
+}

@@ -1,0 +1,133 @@
+{
+ "qwen2.5-32b-instruct|correct_traversal_agent": {
+  "no_target_ever_retrieved": 42,
+  "recovered_and_faithful": 73,
+  "target_observed_but_not_selected": 35
+ },
+ "qwen2.5-32b-instruct|rewired_traversal_agent": {
+  "no_target_ever_retrieved": 69,
+  "target_observed_but_not_selected": 25,
+  "recovered_and_faithful": 55,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen2.5-7b-instruct|bm25_one_shot": {
+  "no_target_ever_retrieved": 80,
+  "target_observed_but_not_selected": 19,
+  "recovered_and_faithful": 50,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen2.5-7b-instruct|compact_hybrid_agent": {
+  "target_observed_but_not_selected": 16,
+  "recovered_and_faithful": 58,
+  "no_target_ever_retrieved": 36,
+  "invalid_answer_or_parser_failure": 39,
+  "target_opened_but_not_selected": 1
+ },
+ "qwen2.5-7b-instruct|correct_hybrid_one_shot": {
+  "target_observed_but_not_selected": 29,
+  "no_target_ever_retrieved": 40,
+  "recovered_and_faithful": 81
+ },
+ "qwen2.5-7b-instruct|correct_traversal_agent": {
+  "target_observed_but_not_selected": 41,
+  "invalid_answer_or_parser_failure": 27,
+  "recovered_and_faithful": 46,
+  "no_target_ever_retrieved": 36
+ },
+ "qwen2.5-7b-instruct|flat_controlled_agent": {
+  "no_target_ever_retrieved": 69,
+  "recovered_and_faithful": 29,
+  "target_observed_but_not_selected": 10,
+  "invalid_answer_or_parser_failure": 41,
+  "target_opened_but_not_selected": 1
+ },
+ "qwen2.5-7b-instruct|matched_pool_replay::compact_hybrid_agent": {
+  "target_observed_but_not_selected": 15,
+  "recovered_and_faithful": 77,
+  "no_target_ever_retrieved": 57,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen2.5-7b-instruct|matched_pool_replay::correct_traversal_agent": {
+  "target_observed_but_not_selected": 41,
+  "no_target_ever_retrieved": 61,
+  "recovered_and_faithful": 46,
+  "invalid_answer_or_parser_failure": 2
+ },
+ "qwen2.5-7b-instruct|matched_pool_replay::flat_controlled_agent": {
+  "no_target_ever_retrieved": 91,
+  "recovered_and_faithful": 43,
+  "target_observed_but_not_selected": 15,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen2.5-7b-instruct|matched_pool_replay::rewired_traversal_agent": {
+  "target_observed_but_not_selected": 17,
+  "no_target_ever_retrieved": 98,
+  "recovered_and_faithful": 34,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen2.5-7b-instruct|rewired_traversal_agent": {
+  "target_observed_but_not_selected": 25,
+  "no_target_ever_retrieved": 83,
+  "invalid_answer_or_parser_failure": 11,
+  "recovered_and_faithful": 31
+ },
+ "qwen3-8b|bm25_one_shot": {
+  "no_target_ever_retrieved": 80,
+  "recovered_and_faithful": 55,
+  "target_observed_but_not_selected": 15
+ },
+ "qwen3-8b|compact_hybrid_agent": {
+  "target_observed_but_not_selected": 9,
+  "no_target_ever_retrieved": 55,
+  "recovered_and_faithful": 85,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen3-8b|correct_hybrid_one_shot": {
+  "target_observed_but_not_selected": 25,
+  "no_target_ever_retrieved": 39,
+  "recovered_and_faithful": 85,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen3-8b|correct_traversal_agent": {
+  "target_observed_but_not_selected": 40,
+  "no_target_ever_retrieved": 47,
+  "recovered_and_faithful": 62,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen3-8b|flat_controlled_agent": {
+  "no_target_ever_retrieved": 82,
+  "target_observed_but_not_selected": 16,
+  "recovered_and_faithful": 51,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen3-8b|matched_pool_replay::compact_hybrid_agent": {
+  "target_observed_but_not_selected": 13,
+  "no_target_ever_retrieved": 56,
+  "recovered_and_faithful": 80,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen3-8b|matched_pool_replay::correct_traversal_agent": {
+  "target_observed_but_not_selected": 35,
+  "no_target_ever_retrieved": 54,
+  "recovered_and_faithful": 60,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen3-8b|matched_pool_replay::flat_controlled_agent": {
+  "no_target_ever_retrieved": 90,
+  "target_observed_but_not_selected": 15,
+  "recovered_and_faithful": 43,
+  "invalid_answer_or_parser_failure": 2
+ },
+ "qwen3-8b|matched_pool_replay::rewired_traversal_agent": {
+  "no_target_ever_retrieved": 93,
+  "recovered_and_faithful": 42,
+  "target_observed_but_not_selected": 14,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen3-8b|rewired_traversal_agent": {
+  "no_target_ever_retrieved": 92,
+  "target_observed_but_not_selected": 15,
+  "recovered_and_faithful": 42,
+  "invalid_answer_or_parser_failure": 1
+ }
+}

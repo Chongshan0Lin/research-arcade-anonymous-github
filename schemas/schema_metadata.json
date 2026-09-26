@@ -1,0 +1,73 @@
+{
+  "citations": {
+    "table_name": "citations",
+    "columns": [
+      {
+        "name": "id",
+        "data_type": "integer",
+        "precision": 32
+      },
+      {
+        "name": "citing_arxiv_id",
+        "data_type": "character varying",
+        "max_length": 100
+      },
+      {
+        "name": "cited_arxiv_id",
+        "data_type": "character varying",
+        "max_length": 100
+      },
+      {
+        "name": "bib_title",
+        "data_type": "text"
+      },
+      {
+        "name": "bib_key",
+        "data_type": "character varying",
+        "max_length": 255
+      },
+      {
+        "name": "author_cited_paper",
+        "data_type": "character varying",
+        "max_length": 255
+      },
+      {
+        "name": "citing_sections",
+        "data_type": "ARRAY"
+      },
+      {
+        "name": "citing_paragraphs",
+        "data_type": "ARRAY"
+      }
+    ]
+  },
+  "paragraph_citations": {
+    "table_name": "paragraph_citations",
+    "columns": [
+      {
+        "name": "id",
+        "data_type": "integer",
+        "precision": 32
+      },
+      {
+        "name": "paragraph_id",
+        "data_type": "integer",
+        "precision": 32
+      },
+      {
+        "name": "paper_section",
+        "data_type": "text"
+      },
+      {
+        "name": "citing_arxiv_id",
+        "data_type": "character varying",
+        "max_length": 100
+      },
+      {
+        "name": "bib_key",
+        "data_type": "character varying",
+        "max_length": 255
+      }
+    ]
+  }
+}

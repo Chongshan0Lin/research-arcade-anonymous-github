@@ -1,0 +1,122 @@
+{
+ "run_id": "graphauto_20260925_035919_027d9a",
+ "protocol": "controlled_interaction_v1",
+ "created": "2026-09-25T04:10:00-05:00",
+ "git_commit": "2631ae6d320009d828da4d451556241f7359fde2",
+ "git_status": [
+  "M tasks/rebuttal/citation_prediction.py",
+  "?? CLAUDE_CODE_AGENTIC_AUTORESEARCH_TASKS.md",
+  "?? ES_MEMEVAL_REPO_INSPECTION.md",
+  "?? EXPERIMENT_REDESIGN_REPORT.md",
+  "?? PHASE0_REVIEWTRACE_PILOT.md",
+  "?? ResearchArcade.pdf",
+  "?? cc_canonical_agentic_autoresearch_runbook.md",
+  "?? cc_graph_autoresearch_full_experiment_runbook.md",
+  "?? evaluation_tasks/",
+  "?? experiment_results_summary(1).md",
+  "?? research_arcade/",
+  "?? results/",
+  "?? tasks/agentic_autoresearch/",
+  "?? tasks/provenance/",
+  "?? tasks/rebuttal/citation_gnn_baselines.py",
+  "?? tasks/rebuttal/citation_random_baseline.py",
+  "?? xjp/"
+ ],
+ "host": "<host redacted>",
+ "python": "3.12.11",
+ "packages": {
+  "torch": "2.7.1+cu126",
+  "vllm": "0.10.1.1"
+ },
+ "cuda_driver": "550.163.01",
+ "cuda": "12.4",
+ "gpu_inventory_file": "gpu_inventory.txt",
+ "previous_canonical_run": {
+  "path": "results/agentic_autoresearch/20260924_182602_a26e2e",
+  "run_id": "20260924_182602_a26e2e",
+  "commit": "2631ae6d3200",
+  "frozen_id_sha256_prefix": "ec357bef29eece81",
+  "label": "natural_action",
+  "preserved": true,
+  "interpretation": "Neither 7B-8B model invoked a retrieval or traversal tool under the natural-action interface. Correct and rewired graphs therefore never reached the model, so their equality is a failed intervention-uptake check rather than evidence that graph connectivity is useless."
+ },
+ "models": [
+  {
+   "name": "qwen3-8b",
+   "path": "$HF_CACHE/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218"
+  },
+  {
+   "name": "qwen2.5-7b-instruct",
+   "path": "$HF_CACHE/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28"
+  }
+ ],
+ "planned_gpu_allocation": {
+  "GPU0": "qwen3-8b :8021",
+  "GPU1": "qwen2.5-7b :8031",
+  "GPU2": "qwen2.5-7b :8032",
+  "GPU3": "qwen3-8b :8022",
+  "GPU9": "qwen3-8b :8011 (pre-existing)",
+  "idle_used": 4,
+  "reserved": "GPU5"
+ },
+ "frozen_id_files": {
+  "controlled_task_a": {
+   "path": "results/agentic_autoresearch/20260924_182602_a26e2e/frozen_ids.jsonl",
+   "sha256_16": "ec357bef29eece81",
+   "note": "reused verbatim from the natural-action run so the two interfaces are directly comparable"
+  },
+  "evidence_bundle_completion_screen": {
+   "path": "results/graph_autoresearch/graphauto_20260925_035919_027d9a/evidence_bundle_completion/frozen_ids.jsonl",
+   "sha256": "063b66b0ca51897f9b02c8447b1698c2b01c564d355787e68b1b89a79f4b3548",
+   "n": 5000
+  },
+  "evidence_bundle_completion_agent": {
+   "path": "results/graph_autoresearch/graphauto_20260925_035919_027d9a/evidence_bundle_completion/agent_results/agent_frozen_ids.jsonl",
+   "sha256": "2849d46ced72ed931b5a2b84646fcbc35a7bd783e5ae457be953ba0a74b5fd0d",
+   "n": 150
+  },
+  "literature_set_expansion_screen": {
+   "path": "results/graph_autoresearch/graphauto_20260925_035919_027d9a/literature_set_expansion/frozen_ids.jsonl",
+   "sha256": "5b7eadacd40f892a0f918cef4510649059f01ee11d2c8fa93ca4384a509e4553",
+   "n": 1200
+  },
+  "literature_set_expansion_agent": {
+   "path": "results/graph_autoresearch/graphauto_20260925_035919_027d9a/literature_set_expansion/agent_results/agent_frozen_ids.jsonl",
+   "sha256": "23429f6159c50b82f170b32f87a089e304085b4a5c7c8b0a078f384fc3de7f15",
+   "n": 150
+  },
+  "scaling_slice": {
+   "path": "results/graph_autoresearch/graphauto_20260925_035919_027d9a/scaling_slice/frozen_ids.jsonl",
+   "sha256": "0d6aeb4568262ea472c19e2d15b46e0a900a4cbe445d11e11d66a9185b46502d",
+   "n": 50
+  },
+  "a2_audited_pass": {
+   "path": "results/graph_autoresearch/graphauto_20260925_035919_027d9a/a2/audited_pass_ids.jsonl",
+   "sha256": "34b25e00af728a7d6e294665a7924be81806b17e629cf8e2236c8322ac1a851c",
+   "n": 10,
+   "note": "10 audit-passing instances; NOT a frozen confirmatory set (runbook 5.2 descriptive only)"
+  }
+ },
+ "graph_variants": {
+  "untyped_edges_hash": "c33f0afd190858f3",
+  "rewire_edges_hash": "0232ea9a6a878502",
+  "degree_hash_both": "1ee5994e832b330b",
+  "degree_preserving": true
+ },
+ "code": {
+  "agent": "tasks/agentic_autoresearch/controlled_agent.py",
+  "gate": "tasks/agentic_autoresearch/controlled_smoke_gate.py",
+  "untouched_natural": "tasks/agentic_autoresearch/canonical_agent.py"
+ },
+ "leakage_bug_found_and_fixed": {
+  "what": "arXiv id version-spelling mismatch let a source paper stay reachable through its versioned twin, defeating source-edge masking",
+  "found_by": "evidence_bundle_completion construction audit",
+  "also_affected": "literature_set_expansion (confirmed exposed: 223/1200 sources, 3070 unmasked source-owned paragraph nodes)",
+  "fix": "all paper identity resolved on the version-stripped base id in every graph variant; degree preservation re-verified after merge",
+  "superseded_artifacts_preserved": [
+   "evidence_bundle_completion/superseded_v1",
+   "literature_set_expansion/superseded_v1"
+  ],
+  "post_fix_leakage_violations": 0
+ }
+}

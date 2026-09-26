@@ -1,0 +1,13 @@
+model,condition,n,evidence_faithful_rate,n_with_evidence
+qwen2.5-7b-instruct,correct_snowballing_agent,150,1.0,81
+qwen2.5-7b-instruct,rewired_snowballing_agent,150,1.0,96
+qwen3-8b,bm25_fixed_list,150,1.0,150
+qwen3-8b,compact_hybrid_literature_agent,150,1.0,148
+qwen3-8b,correct_hybrid_fixed_list,150,1.0,150
+qwen3-8b,correct_snowballing_agent,150,1.0,148
+qwen3-8b,flat_literature_agent,150,1.0,148
+qwen3-8b,matched_pool_replay::compact_hybrid_literature_agent,150,1.0,150
+qwen3-8b,matched_pool_replay::correct_snowballing_agent,150,1.0,150
+qwen3-8b,matched_pool_replay::flat_literature_agent,150,1.0,150
+qwen3-8b,matched_pool_replay::rewired_snowballing_agent,150,1.0,150
+qwen3-8b,rewired_snowballing_agent,150,1.0,148

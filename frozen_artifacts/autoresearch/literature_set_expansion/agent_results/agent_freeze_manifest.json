@@ -1,0 +1,61 @@
+{
+ "name": "litexp_agent_frozen_ids",
+ "task": "literature_set_expansion",
+ "protocol": "litexp_controlled_v1",
+ "generated_at": "2026-09-25T10:59:08+00:00",
+ "git_commit": "2631ae6d320009d828da4d451556241f7359fde2",
+ "seed": 20260925,
+ "n": 150,
+ "drawn_from": "results/graph_autoresearch/graphauto_20260925_035919_027d9a/literature_set_expansion/frozen_ids.jsonl",
+ "selection": "seeded shuffle (seed 20260925) of the frozen SCREEN-split source ids, first 150",
+ "frozen_before_any_inference": true,
+ "dev_slice": "the DEV split of the same frozen file; whole (year, primary category) clusters are assigned to dev or screen, so the smoke slice is structurally disjoint from these ids",
+ "declared_primary_comparison": "correct_snowballing_agent > rewired_snowballing_agent on recall@50",
+ "confirmatory_family": [
+  "correct_snowballing_agent > rewired_snowballing_agent on recall@50",
+  "compact_hybrid_literature_agent > correct_hybrid_fixed_list on recall@50",
+  "flat_literature_agent > matched_pool_replay::flat_literature_agent on recall@50",
+  "correct_snowballing_agent > matched_pool_replay::correct_snowballing_agent on recall@50",
+  "rewired_snowballing_agent > matched_pool_replay::rewired_snowballing_agent on recall@50",
+  "compact_hybrid_literature_agent > matched_pool_replay::compact_hybrid_literature_agent on recall@50"
+ ],
+ "everything_else": "secondary_unadjusted",
+ "conditions": [
+  "bm25_fixed_list",
+  "correct_hybrid_fixed_list",
+  "flat_literature_agent",
+  "correct_snowballing_agent",
+  "rewired_snowballing_agent",
+  "compact_hybrid_literature_agent",
+  "matched_pool_replay::flat_literature_agent",
+  "matched_pool_replay::correct_snowballing_agent",
+  "matched_pool_replay::rewired_snowballing_agent",
+  "matched_pool_replay::compact_hybrid_literature_agent"
+ ],
+ "budgets": {
+  "max_tool_calls": 8,
+  "max_observation_tokens": 6000,
+  "per_call_candidates": 10,
+  "snippet_chars": 220,
+  "max_repairs": 1,
+  "max_refusals": 3,
+  "max_turns": 30,
+  "max_context_tokens": 13000,
+  "max_review_adds": 30
+ },
+ "answer_k": 20,
+ "score_cap": 50,
+ "scoring_rule": "model ranking, then add_to_review ids in add order, then remaining observed candidates in first-seen order, truncated to 50; identical in every condition",
+ "weak_label_note": "Scored against the source paper's own resolved earlier references: an incomplete and selective weak relevance label, not exhaustive ground truth. Absolute recall understates true topical recall; only paired between-condition differences are interpretable.",
+ "scoring_note": "Ids are scored independently of prose quality (runbook 4.4). Rationale text never enters an effectiveness metric; it is only checked for faithfulness and reported separately.",
+ "gold_size": {
+  "mean": 16.9,
+  "min": 5,
+  "max": 88
+ },
+ "hashes": {
+  "agent_ids_sha256": "b309861eee606288d77163c059fcefc95c628fdb2e06d3727a3dc02faedcea10",
+  "agent_frozen_ids_file_sha256": "23429f6159c50b82f170b32f87a089e304085b4a5c7c8b0a078f384fc3de7f15",
+  "agent_ids_only_file_sha256": "973905f209b6dd96612e128ff89669d7bdd0709d5fffa5f54772ec282e1f912d"
+ }
+}

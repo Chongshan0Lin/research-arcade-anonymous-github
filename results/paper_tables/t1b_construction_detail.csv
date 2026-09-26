@@ -1,0 +1,10 @@
+workflow,quantity,value
+Citation Set Completion,source papers,11807
+Citation Set Completion,"GraphHard slice n (exploratory, not canonical)",3494
+Citation Set Completion,bundle size histogram (targets=1/2/3/4),2695/1252/680/373
+Citation Set Completion,split rule,by source paper (70/15/15)
+Literature Set Expansion,gold set size mean / median / min / max,16.57 / 14 / 5 / 88
+Literature Set Expansion,unresolved-reference rate (frozen set),0.68
+Literature Set Expansion,split rule,"by (year, primary category) cluster; 116 clusters, 13 held out for dev"
+both,corpus papers,65328
+both,graph edges (correct == rewired),989123

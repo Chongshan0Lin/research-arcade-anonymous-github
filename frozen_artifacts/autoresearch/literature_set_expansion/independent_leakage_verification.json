@@ -1,0 +1,27 @@
+{
+ "n_sampled_instances": 60,
+ "n_returned_ids_rechecked": 15000,
+ "independent_date_source": "fresh `select min(submit_date) from papers group by 1` query",
+ "future_date_violations": 0,
+ "future_violation_examples": [],
+ "source_in_results_violations": 0,
+ "unknown_date_ids": 0,
+ "unknown_examples": [],
+ "gold_refs_not_covered_by_a_source_emitted_edge": 0,
+ "source_edge_controls": {
+  "note": "graph_correct Recall@50 under the reported masking (T0+T3) versus two deliberately broken variants. Control A lets traversal pass THROUGH the source node so its own citation edges become live paths -- the value of pure source-edge leakage. Control B is a faithful replay of the superseded v1 masking (literal-id blocked set on the UN-MERGED adjacency), i.e. the exact identity bug, so the gap measures how much the bug was actually worth on these instances.",
+  "mean_recall50_reported": 0.3944,
+  "control_A_source_as_waypoint": {
+   "mean_recall50": 0.3984,
+   "mean_leak": 0.004,
+   "n_instances_changed": 4
+  },
+  "control_B_v1_literal_id_mask": {
+   "mean_recall50": 0.3911,
+   "mean_delta_vs_reported": -0.0032,
+   "n_instances_changed": 3
+  },
+  "n": 60
+ },
+ "verdict": "PASS: zero independent temporal/source-edge leakage violations"
+}

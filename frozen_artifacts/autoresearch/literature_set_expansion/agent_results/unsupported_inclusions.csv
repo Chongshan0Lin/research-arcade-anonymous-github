@@ -1,0 +1,13 @@
+model,condition,n,selected_ids,unsupported_ids,unsupported_rate,episodes_with_any_unsupported
+qwen2.5-7b-instruct,correct_snowballing_agent,150,3061,0,0.0,0
+qwen2.5-7b-instruct,rewired_snowballing_agent,150,3854,0,0.0,0
+qwen3-8b,bm25_fixed_list,150,7500,0,0.0,0
+qwen3-8b,compact_hybrid_literature_agent,150,3614,0,0.0,0
+qwen3-8b,correct_hybrid_fixed_list,150,7500,0,0.0,0
+qwen3-8b,correct_snowballing_agent,150,4613,0,0.0,0
+qwen3-8b,flat_literature_agent,150,4245,0,0.0,0
+qwen3-8b,matched_pool_replay::compact_hybrid_literature_agent,150,3676,0,0.0,0
+qwen3-8b,matched_pool_replay::correct_snowballing_agent,150,4659,0,0.0,0
+qwen3-8b,matched_pool_replay::flat_literature_agent,150,4289,0,0.0,0
+qwen3-8b,matched_pool_replay::rewired_snowballing_agent,150,4655,0,0.0,0
+qwen3-8b,rewired_snowballing_agent,150,4596,0,0.0,0

@@ -1,0 +1,31 @@
+{
+ "rule": "T0: paper node identity resolved on the version-stripped base id, identically in every graph variant",
+ "per_variant": {
+  "full": {
+   "edges_read": 989123,
+   "edges_kept": 989123,
+   "endpoints_renamed": 73178,
+   "merge_self_loops_dropped": 0,
+   "merge_duplicates_dropped": 0,
+   "n_nodes": 226036
+  },
+  "rewire": {
+   "edges_read": 989123,
+   "edges_kept": 989123,
+   "endpoints_renamed": 73178,
+   "merge_self_loops_dropped": 0,
+   "merge_duplicates_dropped": 0,
+   "n_nodes": 226036
+  }
+ },
+ "degree_preservation_after_merge": {
+  "out_degree_sequences_identical": true,
+  "in_degree_sequences_identical": true,
+  "relations": [
+   "cites",
+   "has_paragraph",
+   "para_cites",
+   "written_by"
+  ]
+ }
+}

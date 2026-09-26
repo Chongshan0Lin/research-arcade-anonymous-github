@@ -1,0 +1,143 @@
+{
+ "qwen2.5-7b-instruct|bm25_one_shot_ctrl": {
+  "gold_absent_from_retrieved": 132,
+  "gold_observed_but_not_opened": 37,
+  "correct_cites_unseen": 31
+ },
+ "qwen2.5-7b-instruct|compact_hybrid_controlled_agent": {
+  "gold_absent_from_retrieved": 90,
+  "invalid_answer_or_parser_failure": 7,
+  "correct_and_faithful": 48,
+  "gold_observed_but_not_opened": 55
+ },
+ "qwen2.5-7b-instruct|correct_graph_controlled_agent": {
+  "gold_observed_but_not_opened": 60,
+  "correct_and_faithful": 31,
+  "gold_absent_from_retrieved": 100,
+  "invalid_answer_or_parser_failure": 9
+ },
+ "qwen2.5-7b-instruct|correct_hybrid_one_shot_ctrl": {
+  "correct_cites_unseen": 37,
+  "gold_absent_from_retrieved": 106,
+  "gold_observed_but_not_opened": 57
+ },
+ "qwen2.5-7b-instruct|flat_controlled_agent": {
+  "gold_absent_from_retrieved": 113,
+  "gold_observed_but_not_opened": 34,
+  "invalid_answer_or_parser_failure": 16,
+  "correct_and_faithful": 37
+ },
+ "qwen2.5-7b-instruct|matched_pool_replay::bm25_one_shot_ctrl": {
+  "gold_absent_from_retrieved": 132,
+  "gold_observed_but_not_opened": 37,
+  "correct_cites_unseen": 31
+ },
+ "qwen2.5-7b-instruct|matched_pool_replay::compact_hybrid_controlled_agent": {
+  "gold_absent_from_retrieved": 91,
+  "correct_cites_unseen": 2,
+  "correct_and_faithful": 41,
+  "gold_observed_but_not_opened": 65,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen2.5-7b-instruct|matched_pool_replay::correct_graph_controlled_agent": {
+  "gold_observed_but_not_opened": 68,
+  "correct_and_faithful": 26,
+  "gold_absent_from_retrieved": 103,
+  "invalid_answer_or_parser_failure": 1,
+  "correct_cites_unseen": 2
+ },
+ "qwen2.5-7b-instruct|matched_pool_replay::correct_hybrid_one_shot_ctrl": {
+  "correct_cites_unseen": 37,
+  "gold_absent_from_retrieved": 106,
+  "gold_observed_but_not_opened": 57
+ },
+ "qwen2.5-7b-instruct|matched_pool_replay::flat_controlled_agent": {
+  "gold_absent_from_retrieved": 125,
+  "gold_observed_but_not_opened": 44,
+  "correct_and_faithful": 28,
+  "invalid_answer_or_parser_failure": 1,
+  "correct_cites_unseen": 2
+ },
+ "qwen2.5-7b-instruct|matched_pool_replay::rewired_graph_controlled_agent": {
+  "gold_absent_from_retrieved": 128,
+  "gold_observed_but_not_opened": 44,
+  "correct_and_faithful": 26,
+  "invalid_answer_or_parser_failure": 1,
+  "correct_cites_unseen": 1
+ },
+ "qwen2.5-7b-instruct|rewired_graph_controlled_agent": {
+  "gold_absent_from_retrieved": 123,
+  "gold_observed_but_not_opened": 36,
+  "correct_and_faithful": 31,
+  "invalid_answer_or_parser_failure": 10
+ },
+ "qwen3-8b|bm25_one_shot_ctrl": {
+  "gold_absent_from_retrieved": 132,
+  "correct_cites_unseen": 35,
+  "gold_observed_but_not_opened": 33
+ },
+ "qwen3-8b|compact_hybrid_controlled_agent": {
+  "correct_and_faithful": 46,
+  "gold_observed_but_not_opened": 57,
+  "gold_absent_from_retrieved": 95,
+  "invalid_answer_or_parser_failure": 2
+ },
+ "qwen3-8b|correct_graph_controlled_agent": {
+  "correct_and_faithful": 44,
+  "gold_observed_but_not_opened": 41,
+  "gold_absent_from_retrieved": 114,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen3-8b|correct_hybrid_one_shot_ctrl": {
+  "gold_observed_but_not_opened": 53,
+  "gold_absent_from_retrieved": 106,
+  "correct_cites_unseen": 41
+ },
+ "qwen3-8b|flat_controlled_agent": {
+  "correct_and_faithful": 42,
+  "gold_observed_but_not_opened": 35,
+  "gold_absent_from_retrieved": 119,
+  "invalid_answer_or_parser_failure": 4
+ },
+ "qwen3-8b|matched_pool_replay::bm25_one_shot_ctrl": {
+  "gold_absent_from_retrieved": 132,
+  "correct_cites_unseen": 35,
+  "gold_observed_but_not_opened": 33
+ },
+ "qwen3-8b|matched_pool_replay::compact_hybrid_controlled_agent": {
+  "correct_and_faithful": 47,
+  "gold_observed_but_not_opened": 56,
+  "gold_absent_from_retrieved": 95,
+  "invalid_answer_or_parser_failure": 2
+ },
+ "qwen3-8b|matched_pool_replay::correct_graph_controlled_agent": {
+  "correct_and_faithful": 36,
+  "gold_observed_but_not_opened": 49,
+  "gold_absent_from_retrieved": 114,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen3-8b|matched_pool_replay::correct_hybrid_one_shot_ctrl": {
+  "gold_observed_but_not_opened": 53,
+  "gold_absent_from_retrieved": 106,
+  "correct_cites_unseen": 41
+ },
+ "qwen3-8b|matched_pool_replay::flat_controlled_agent": {
+  "correct_and_faithful": 33,
+  "gold_observed_but_not_opened": 44,
+  "gold_absent_from_retrieved": 120,
+  "correct_cites_unseen": 1,
+  "invalid_answer_or_parser_failure": 2
+ },
+ "qwen3-8b|matched_pool_replay::rewired_graph_controlled_agent": {
+  "gold_observed_but_not_opened": 35,
+  "correct_and_faithful": 34,
+  "gold_absent_from_retrieved": 130,
+  "invalid_answer_or_parser_failure": 1
+ },
+ "qwen3-8b|rewired_graph_controlled_agent": {
+  "correct_and_faithful": 37,
+  "gold_observed_but_not_opened": 32,
+  "gold_absent_from_retrieved": 130,
+  "invalid_answer_or_parser_failure": 1
+ }
+}

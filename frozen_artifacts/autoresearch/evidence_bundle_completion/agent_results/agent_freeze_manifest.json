@@ -1,0 +1,50 @@
+{
+ "name": "ebc_agent_frozen_ids",
+ "task": "evidence_bundle_completion",
+ "protocol": "ebc_controlled_v1",
+ "generated_at": "2026-09-25T09:47:57+00:00",
+ "git_commit": "2631ae6d320009d828da4d451556241f7359fde2",
+ "seed": 20260925,
+ "n": 150,
+ "n_graphhard": 110,
+ "drawn_from": "results/graph_autoresearch/graphauto_20260925_035919_027d9a/evidence_bundle_completion/frozen_ids.jsonl",
+ "selection": "seeded shuffle (seed 20260925) of the frozen General EBC ids, first 150",
+ "frozen_before_any_inference": true,
+ "declared_primary_comparison": "correct_traversal_agent > rewired_traversal_agent on macro target recall@10",
+ "conditions": [
+  "bm25_one_shot",
+  "correct_hybrid_one_shot",
+  "flat_controlled_agent",
+  "correct_traversal_agent",
+  "rewired_traversal_agent",
+  "compact_hybrid_agent",
+  "matched_pool_replay::flat_controlled_agent",
+  "matched_pool_replay::correct_traversal_agent",
+  "matched_pool_replay::rewired_traversal_agent",
+  "matched_pool_replay::compact_hybrid_agent"
+ ],
+ "budgets": {
+  "max_tool_calls": 8,
+  "max_observation_tokens": 6000,
+  "per_call_candidates": 10,
+  "snippet_chars": 220,
+  "max_repairs": 1,
+  "max_refusals": 3,
+  "max_turns": 16,
+  "max_context_tokens": 13000
+ },
+ "answer_length_rule": "min(10, n_targets + 4)",
+ "dev_slice": "EBC validation split (disjoint from the test split these ids come from)",
+ "provenance_note": "A stored graph path is retrieval provenance: it records how a candidate was reachable in the pre-cutoff graph. It is not evidence that the paper supports the paragraph.",
+ "hashes": {
+  "agent_ids_sha256": "32e72938d23e8b96d3e4dce8810320dcd23d949db272f3933fe55c91d8476477",
+  "graphhard_subset_sha256": "c7bbafb53f4cdd2cc43ca4dcd2e0b86d2e5c1c1fca03d00f92c81b629e2dd752",
+  "agent_frozen_ids_file_sha256": "2849d46ced72ed931b5a2b84646fcbc35a7bd783e5ae457be953ba0a74b5fd0d"
+ },
+ "bundle_size_histogram": {
+  "1": 79,
+  "2": 39,
+  "3": 25,
+  "4": 7
+ }
+}

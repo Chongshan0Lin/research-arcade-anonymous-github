@@ -1,0 +1,748 @@
+{
+ "instance_id": "EBC-3452627",
+ "correct": {
+  "run_id": "ebcagent_graphauto_20260925_035919_027d9a",
+  "commit": "2631ae6d320009d828da4d451556241f7359fde2",
+  "protocol": "ebc_controlled_v1",
+  "task": "evidence_bundle_completion",
+  "condition": "correct_traversal_agent",
+  "model": "qwen3-8b",
+  "prompt_version": "ebc-v1",
+  "seed": 20260925,
+  "resume_key": "qwen3-8b|correct_traversal_agent|EBC-3452627",
+  "instance_id": "EBC-3452627",
+  "as_of": "2025-07-02",
+  "graphhard": true,
+  "source_paper_id": "2507.01297",
+  "anchor_paper_id": "2009.02252",
+  "n_targets": 2,
+  "answer_k": 6,
+  "graph_variant_hash": "8eaf8a5b49677160",
+  "graph_degree_hash": "6eabc2eb8071a94d",
+  "prompt_schema_hash": "022026c38463b3f2",
+  "tool_calls": [
+   {
+    "tool": "search",
+    "arguments": {
+     "action": "search",
+     "query": "retrieval augmented generation benchmarks",
+     "current_ranking": []
+    },
+    "returned_ids": [
+     "2501.15067",
+     "2502.13361",
+     "2502.16636",
+     "2504.20434",
+     "2505.14462",
+     "2502.05344",
+     "2505.18581",
+     "2504.10529",
+     "2506.16037",
+     "2501.14998"
+    ],
+    "truncated": false,
+    "error": null,
+    "blocked": false
+   },
+   {
+    "tool": "traverse",
+    "arguments": {
+     "action": "traverse",
+     "paper_id": "2009.02252",
+     "current_ranking": [
+      "2009.02252"
+     ]
+    },
+    "returned_ids": [
+     "2005.11401",
+     "1809.09600",
+     "1705.03551",
+     "1803.05355",
+     "1811.01241",
+     "2310.11511",
+     "2005.14165",
+     "1810.04805",
+     "1910.10683",
+     "1907.09190"
+    ],
+    "truncated": false,
+    "error": null,
+    "blocked": false
+   }
+  ],
+  "n_tool_calls": 2,
+  "calls_attempted": 3,
+  "calls_parsed": 3,
+  "calls_dispatched": 2,
+  "calls_succeeded": 2,
+  "blocked_calls": 0,
+  "failed_calls": 0,
+  "malformed_actions": 0,
+  "repairs": 0,
+  "premature_finalize_refusals": 0,
+  "forced_final": false,
+  "uptake": {
+   "search": 1,
+   "open": 0,
+   "traverse": 1,
+   "hybrid_search": 0
+  },
+  "observed_candidates": [
+   "2501.15067",
+   "2502.13361",
+   "2502.16636",
+   "2504.20434",
+   "2505.14462",
+   "2502.05344",
+   "2505.18581",
+   "2504.10529",
+   "2506.16037",
+   "2501.14998",
+   "2005.11401",
+   "1809.09600",
+   "1705.03551",
+   "1803.05355",
+   "1811.01241",
+   "2310.11511",
+   "2005.14165",
+   "1810.04805",
+   "1910.10683",
+   "1907.09190"
+  ],
+  "opened": [],
+  "observation_tokens": 1658,
+  "truncation_events": 0,
+  "matched_pool_hash": "729b568db5801c2c",
+  "anytime": {
+   "1": {
+    "ranking": [],
+    "n_targets_observed": 0,
+    "metrics": {
+     "recall_at5": 0.0,
+     "recall_at10": 0.0,
+     "set_f1": 0.0,
+     "set_recall": 0.0,
+     "r_precision": 0.0,
+     "mrr": 0.0,
+     "hit": 0.0,
+     "valid": 0.0
+    }
+   },
+   "2": {
+    "ranking": [],
+    "n_targets_observed": 2,
+    "metrics": {
+     "recall_at5": 0.0,
+     "recall_at10": 0.0,
+     "set_f1": 0.0,
+     "set_recall": 0.0,
+     "r_precision": 0.0,
+     "mrr": 0.0,
+     "hit": 0.0,
+     "valid": 0.0
+    }
+   }
+  },
+  "calls_to_first_target": 2,
+  "ranked": [
+   "2005.11401",
+   "1809.09600",
+   "1705.03551",
+   "2501.15067",
+   "2502.13361",
+   "2502.16636"
+  ],
+  "cited_evidence": [
+   "2005.11401",
+   "1809.09600",
+   "1705.03551"
+  ],
+  "targets": [
+   "1705.03551",
+   "2005.11401"
+  ],
+  "targets_observed": [
+   "1705.03551",
+   "2005.11401"
+  ],
+  "targets_opened": [],
+  "targets_selected": [
+   "1705.03551",
+   "2005.11401"
+  ],
+  "n_targets_observed": 2,
+  "n_targets_selected": 2,
+  "retrieval_provenance_path": [
+   {
+    "target": "1705.03551",
+    "graph_variant": "full",
+    "first_seen_at_call": 2,
+    "via_tool": "traverse",
+    "traversed_from": "2009.02252",
+    "hops_from_traversed_paper": 1,
+    "witness_from_traversed_paper": null,
+    "hops_from_anchor": 1,
+    "witness_from_anchor": null,
+    "witness_available_at": null,
+    "path_verified_in_condition_graph": true,
+    "note": "A stored graph path is retrieval provenance: it records how a candidate was reachable in the pre-cutoff graph. It is not evidence that the paper supports the paragraph."
+   },
+   {
+    "target": "2005.11401",
+    "graph_variant": "full",
+    "first_seen_at_call": 2,
+    "via_tool": "traverse",
+    "traversed_from": "2009.02252",
+    "hops_from_traversed_paper": 1,
+    "witness_from_traversed_paper": null,
+    "hops_from_anchor": 1,
+    "witness_from_anchor": null,
+    "witness_available_at": null,
+    "path_verified_in_condition_graph": true,
+    "note": "A stored graph path is retrieval provenance: it records how a candidate was reachable in the pre-cutoff graph. It is not evidence that the paper supports the paragraph."
+   }
+  ],
+  "provenance_note": "A stored graph path is retrieval provenance: it records how a candidate was reachable in the pre-cutoff graph. It is not evidence that the paper supports the paragraph.",
+  "path_faithful": true,
+  "parser_problem": null,
+  "valid": true,
+  "padded_ids": 3,
+  "evidence_faithful": true,
+  "latency_ms": 3173,
+  "metrics": {
+   "recall_at5": 1.0,
+   "recall_at10": 1.0,
+   "set_f1": 0.5,
+   "set_recall": 1.0,
+   "r_precision": 0.5,
+   "mrr": 1.0,
+   "hit": 1.0,
+   "valid": 1.0
+  }
+ },
+ "rewired": {
+  "run_id": "ebcagent_graphauto_20260925_035919_027d9a",
+  "commit": "2631ae6d320009d828da4d451556241f7359fde2",
+  "protocol": "ebc_controlled_v1",
+  "task": "evidence_bundle_completion",
+  "condition": "rewired_traversal_agent",
+  "model": "qwen3-8b",
+  "prompt_version": "ebc-v1",
+  "seed": 20260925,
+  "resume_key": "qwen3-8b|rewired_traversal_agent|EBC-3452627",
+  "instance_id": "EBC-3452627",
+  "as_of": "2025-07-02",
+  "graphhard": true,
+  "source_paper_id": "2507.01297",
+  "anchor_paper_id": "2009.02252",
+  "n_targets": 2,
+  "answer_k": 6,
+  "graph_variant_hash": "6c1718f24eef495e",
+  "graph_degree_hash": "6eabc2eb8071a94d",
+  "prompt_schema_hash": "022026c38463b3f2",
+  "tool_calls": [
+   {
+    "tool": "search",
+    "arguments": {
+     "action": "search",
+     "query": "retrieval augmented generation benchmarks",
+     "current_ranking": []
+    },
+    "returned_ids": [
+     "2501.15067",
+     "2502.13361",
+     "2502.16636",
+     "2504.20434",
+     "2505.14462",
+     "2502.05344",
+     "2505.18581",
+     "2504.10529",
+     "2506.16037",
+     "2501.14998"
+    ],
+    "truncated": false,
+    "error": null,
+    "blocked": false
+   },
+   {
+    "tool": "traverse",
+    "arguments": {
+     "action": "traverse",
+     "paper_id": "2009.02252",
+     "current_ranking": [
+      "2009.02252"
+     ]
+    },
+    "returned_ids": [
+     "1706.03762",
+     "2005.14165",
+     "1711.05101",
+     "2006.11239",
+     "1412.6980",
+     "2103.00020",
+     "2501.12948",
+     "1512.03385",
+     "1707.06347",
+     "2010.11929"
+    ],
+    "truncated": false,
+    "error": null,
+    "blocked": false
+   }
+  ],
+  "n_tool_calls": 2,
+  "calls_attempted": 3,
+  "calls_parsed": 3,
+  "calls_dispatched": 2,
+  "calls_succeeded": 2,
+  "blocked_calls": 0,
+  "failed_calls": 0,
+  "malformed_actions": 0,
+  "repairs": 0,
+  "premature_finalize_refusals": 0,
+  "forced_final": false,
+  "uptake": {
+   "search": 1,
+   "open": 0,
+   "traverse": 1,
+   "hybrid_search": 0
+  },
+  "observed_candidates": [
+   "2501.15067",
+   "2502.13361",
+   "2502.16636",
+   "2504.20434",
+   "2505.14462",
+   "2502.05344",
+   "2505.18581",
+   "2504.10529",
+   "2506.16037",
+   "2501.14998",
+   "1706.03762",
+   "2005.14165",
+   "1711.05101",
+   "2006.11239",
+   "1412.6980",
+   "2103.00020",
+   "2501.12948",
+   "1512.03385",
+   "1707.06347",
+   "2010.11929"
+  ],
+  "opened": [],
+  "observation_tokens": 1615,
+  "truncation_events": 0,
+  "matched_pool_hash": "b6261f0fb2abc99d",
+  "anytime": {
+   "1": {
+    "ranking": [],
+    "n_targets_observed": 0,
+    "metrics": {
+     "recall_at5": 0.0,
+     "recall_at10": 0.0,
+     "set_f1": 0.0,
+     "set_recall": 0.0,
+     "r_precision": 0.0,
+     "mrr": 0.0,
+     "hit": 0.0,
+     "valid": 0.0
+    }
+   },
+   "2": {
+    "ranking": [],
+    "n_targets_observed": 0,
+    "metrics": {
+     "recall_at5": 0.0,
+     "recall_at10": 0.0,
+     "set_f1": 0.0,
+     "set_recall": 0.0,
+     "r_precision": 0.0,
+     "mrr": 0.0,
+     "hit": 0.0,
+     "valid": 0.0
+    }
+   }
+  },
+  "calls_to_first_target": null,
+  "ranked": [
+   "2504.10529",
+   "2505.18581",
+   "2501.15067",
+   "2502.13361",
+   "2502.16636",
+   "2504.20434"
+  ],
+  "cited_evidence": [
+   "2504.10529",
+   "2505.18581"
+  ],
+  "targets": [
+   "1705.03551",
+   "2005.11401"
+  ],
+  "targets_observed": [],
+  "targets_opened": [],
+  "targets_selected": [],
+  "n_targets_observed": 0,
+  "n_targets_selected": 0,
+  "retrieval_provenance_path": [],
+  "provenance_note": "A stored graph path is retrieval provenance: it records how a candidate was reachable in the pre-cutoff graph. It is not evidence that the paper supports the paragraph.",
+  "path_faithful": null,
+  "parser_problem": null,
+  "valid": true,
+  "padded_ids": 4,
+  "evidence_faithful": true,
+  "latency_ms": 998,
+  "metrics": {
+   "recall_at5": 0.0,
+   "recall_at10": 0.0,
+   "set_f1": 0.0,
+   "set_recall": 0.0,
+   "r_precision": 0.0,
+   "mrr": 0.0,
+   "hit": 0.0,
+   "valid": 1.0
+  }
+ },
+ "flat": {
+  "run_id": "ebcagent_graphauto_20260925_035919_027d9a",
+  "commit": "2631ae6d320009d828da4d451556241f7359fde2",
+  "protocol": "ebc_controlled_v1",
+  "task": "evidence_bundle_completion",
+  "condition": "flat_controlled_agent",
+  "model": "qwen3-8b",
+  "prompt_version": "ebc-v1",
+  "seed": 20260925,
+  "resume_key": "qwen3-8b|flat_controlled_agent|EBC-3452627",
+  "instance_id": "EBC-3452627",
+  "as_of": "2025-07-02",
+  "graphhard": true,
+  "source_paper_id": "2507.01297",
+  "anchor_paper_id": "2009.02252",
+  "n_targets": 2,
+  "answer_k": 6,
+  "graph_variant_hash": "none",
+  "graph_degree_hash": "none",
+  "prompt_schema_hash": "2c18b4c59329d8cb",
+  "tool_calls": [
+   {
+    "tool": "search",
+    "arguments": {
+     "action": "search",
+     "query": "retrieval augmented generation benchmarks",
+     "current_ranking": []
+    },
+    "returned_ids": [
+     "2501.15067",
+     "2502.13361",
+     "2502.16636",
+     "2504.20434",
+     "2505.14462",
+     "2502.05344",
+     "2505.18581",
+     "2504.10529",
+     "2506.16037",
+     "2501.14998"
+    ],
+    "truncated": false,
+    "error": null,
+    "blocked": false
+   },
+   {
+    "tool": "search",
+    "arguments": {
+     "action": "search",
+     "query": "retrieval augmented generation effectiveness"
+    },
+    "returned_ids": [
+     "2504.10529",
+     "2506.16037",
+     "2503.23013",
+     "2412.14457",
+     "2502.17297",
+     "2501.13742",
+     "2502.14614",
+     "2501.18365",
+     "2505.14462",
+     "2502.01142"
+    ],
+    "truncated": false,
+    "error": null,
+    "blocked": false
+   },
+   {
+    "tool": "search",
+    "arguments": {
+     "action": "search",
+     "query": "retrieval augmented generation effectiveness"
+    },
+    "returned_ids": [
+     "2504.10529",
+     "2506.16037",
+     "2503.23013",
+     "2412.14457",
+     "2502.17297",
+     "2501.13742",
+     "2502.14614",
+     "2501.18365",
+     "2505.14462",
+     "2502.01142"
+    ],
+    "truncated": false,
+    "error": null,
+    "blocked": false
+   },
+   {
+    "tool": "search",
+    "arguments": {
+     "action": "search",
+     "query": "retrieval augmented generation effectiveness"
+    },
+    "returned_ids": [
+     "2504.10529",
+     "2506.16037",
+     "2503.23013",
+     "2412.14457",
+     "2502.17297",
+     "2501.13742",
+     "2502.14614",
+     "2501.18365",
+     "2505.14462",
+     "2502.01142"
+    ],
+    "truncated": false,
+    "error": null,
+    "blocked": false
+   },
+   {
+    "tool": "search",
+    "arguments": {
+     "action": "search",
+     "query": "retrieval augmented generation effectiveness"
+    },
+    "returned_ids": [
+     "2504.10529",
+     "2506.16037",
+     "2503.23013",
+     "2412.14457",
+     "2502.17297",
+     "2501.13742",
+     "2502.14614",
+     "2501.18365",
+     "2505.14462",
+     "2502.01142"
+    ],
+    "truncated": false,
+    "error": null,
+    "blocked": false
+   },
+   {
+    "tool": "search",
+    "arguments": {
+     "action": "search",
+     "query": "retrieval augmented generation effectiveness"
+    },
+    "returned_ids": [
+     "2504.10529",
+     "2506.16037",
+     "2503.23013",
+     "2412.14457",
+     "2502.17297",
+     "2501.13742",
+     "2502.14614",
+     "2501.18365",
+     "2505.14462",
+     "2502.01142"
+    ],
+    "truncated": false,
+    "error": null,
+    "blocked": false
+   },
+   {
+    "tool": "search",
+    "arguments": {
+     "action": "search",
+     "query": "retrieval augmented generation effectiveness"
+    },
+    "returned_ids": [
+     "2504.10529",
+     "2506.16037",
+     "2503.23013",
+     "2412.14457",
+     "2502.17297",
+     "2501.13742",
+     "2502.14614",
+     "2501.18365",
+     "2505.14462",
+     "2502.01142"
+    ],
+    "truncated": false,
+    "error": null,
+    "blocked": false
+   },
+   {
+    "tool": "search",
+    "arguments": {
+     "action": "search",
+     "query": "retrieval augmented generation effectiveness"
+    },
+    "returned_ids": [
+     "2504.10529",
+     "2506.16037",
+     "2503.23013",
+     "2412.14457",
+     "2502.17297",
+     "2501.13742",
+     "2502.14614",
+     "2501.18365",
+     "2505.14462",
+     "2502.01142"
+    ],
+    "truncated": true,
+    "error": null,
+    "blocked": false
+   }
+  ],
+  "n_tool_calls": 8,
+  "calls_attempted": 9,
+  "calls_parsed": 8,
+  "calls_dispatched": 8,
+  "calls_succeeded": 8,
+  "blocked_calls": 0,
+  "failed_calls": 0,
+  "malformed_actions": 0,
+  "repairs": 0,
+  "premature_finalize_refusals": 0,
+  "forced_final": true,
+  "uptake": {
+   "search": 8,
+   "open": 0,
+   "traverse": 0,
+   "hybrid_search": 0
+  },
+  "observed_candidates": [
+   "2501.15067",
+   "2502.13361",
+   "2502.16636",
+   "2504.20434",
+   "2505.14462",
+   "2502.05344",
+   "2505.18581",
+   "2504.10529",
+   "2506.16037",
+   "2501.14998",
+   "2503.23013",
+   "2412.14457",
+   "2502.17297",
+   "2501.13742",
+   "2502.14614",
+   "2501.18365",
+   "2502.01142"
+  ],
+  "opened": [],
+  "observation_tokens": 5950,
+  "truncation_events": 1,
+  "matched_pool_hash": "93bb9843dd6d3f7b",
+  "anytime": {
+   "1": {
+    "ranking": [],
+    "n_targets_observed": 0,
+    "metrics": {
+     "recall_at5": 0.0,
+     "recall_at10": 0.0,
+     "set_f1": 0.0,
+     "set_recall": 0.0,
+     "r_precision": 0.0,
+     "mrr": 0.0,
+     "hit": 0.0,
+     "valid": 0.0
+    }
+   },
+   "2": {
+    "ranking": [],
+    "n_targets_observed": 0,
+    "metrics": {
+     "recall_at5": 0.0,
+     "recall_at10": 0.0,
+     "set_f1": 0.0,
+     "set_recall": 0.0,
+     "r_precision": 0.0,
+     "mrr": 0.0,
+     "hit": 0.0,
+     "valid": 0.0
+    }
+   },
+   "4": {
+    "ranking": [],
+    "n_targets_observed": 0,
+    "metrics": {
+     "recall_at5": 0.0,
+     "recall_at10": 0.0,
+     "set_f1": 0.0,
+     "set_recall": 0.0,
+     "r_precision": 0.0,
+     "mrr": 0.0,
+     "hit": 0.0,
+     "valid": 0.0
+    }
+   },
+   "8": {
+    "ranking": [],
+    "n_targets_observed": 0,
+    "metrics": {
+     "recall_at5": 0.0,
+     "recall_at10": 0.0,
+     "set_f1": 0.0,
+     "set_recall": 0.0,
+     "r_precision": 0.0,
+     "mrr": 0.0,
+     "hit": 0.0,
+     "valid": 0.0
+    }
+   }
+  },
+  "calls_to_first_target": null,
+  "ranked": [
+   "2502.13361",
+   "2506.16037",
+   "2502.14614",
+   "2501.18365",
+   "2502.01142",
+   "2501.15067"
+  ],
+  "cited_evidence": [
+   "2502.13361",
+   "2506.16037",
+   "2502.14614",
+   "2501.18365",
+   "2502.01142"
+  ],
+  "targets": [
+   "1705.03551",
+   "2005.11401"
+  ],
+  "targets_observed": [],
+  "targets_opened": [],
+  "targets_selected": [],
+  "n_targets_observed": 0,
+  "n_targets_selected": 0,
+  "retrieval_provenance_path": [],
+  "provenance_note": "A stored graph path is retrieval provenance: it records how a candidate was reachable in the pre-cutoff graph. It is not evidence that the paper supports the paragraph.",
+  "path_faithful": null,
+  "parser_problem": null,
+  "valid": true,
+  "padded_ids": 1,
+  "evidence_faithful": true,
+  "latency_ms": 7482,
+  "metrics": {
+   "recall_at5": 0.0,
+   "recall_at10": 0.0,
+   "set_f1": 0.0,
+   "set_recall": 0.0,
+   "r_precision": 0.0,
+   "mrr": 0.0,
+   "hit": 0.0,
+   "valid": 1.0
+  }
+ }
+}

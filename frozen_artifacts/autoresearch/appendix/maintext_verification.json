@@ -1,0 +1,192 @@
+{
+ "all_reproduced": true,
+ "n_checked": 31,
+ "checks": [
+  {
+   "quantity": "CSC fixed BM25 R@20",
+   "main_text": 0.3516,
+   "artifact": 0.351567,
+   "match": true
+  },
+  {
+   "quantity": "CSC fixed RewiredHybrid R@20",
+   "main_text": 0.3396,
+   "artifact": 0.339617,
+   "match": true
+  },
+  {
+   "quantity": "CSC fixed CorrectHybrid R@20",
+   "main_text": 0.6303,
+   "artifact": 0.630267,
+   "match": true
+  },
+  {
+   "quantity": "CSC fixed Correct-Rewired diff",
+   "main_text": 0.2907,
+   "artifact": 0.29065,
+   "match": true
+  },
+  {
+   "quantity": "CSC fixed CI lo",
+   "main_text": 0.2789,
+   "artifact": 0.2789,
+   "match": true
+  },
+  {
+   "quantity": "CSC fixed CI hi",
+   "main_text": 0.3026,
+   "artifact": 0.3026,
+   "match": true
+  },
+  {
+   "quantity": "LSE fixed BM25 R@50",
+   "main_text": 0.1913,
+   "artifact": 0.191311,
+   "match": true
+  },
+  {
+   "quantity": "LSE fixed RewiredHybrid R@50",
+   "main_text": 0.2516,
+   "artifact": 0.251551,
+   "match": true
+  },
+  {
+   "quantity": "LSE fixed CorrectHybrid R@50",
+   "main_text": 0.4266,
+   "artifact": 0.426563,
+   "match": true
+  },
+  {
+   "quantity": "LSE fixed Correct-Rewired diff",
+   "main_text": 0.175,
+   "artifact": 0.175012,
+   "match": true
+  },
+  {
+   "quantity": "LSE fixed CI lo",
+   "main_text": 0.1644,
+   "artifact": 0.164373,
+   "match": true
+  },
+  {
+   "quantity": "LSE fixed CI hi",
+   "main_text": 0.1858,
+   "artifact": 0.185845,
+   "match": true
+  },
+  {
+   "quantity": "CSC agent qwen2.5-7b-instruct diff R@10",
+   "main_text": 0.0889,
+   "artifact": 0.0889,
+   "match": true
+  },
+  {
+   "quantity": "CSC agent qwen2.5-7b-instruct CI lo",
+   "main_text": 0.0428,
+   "artifact": 0.0428,
+   "match": true
+  },
+  {
+   "quantity": "CSC agent qwen2.5-7b-instruct CI hi",
+   "main_text": 0.1378,
+   "artifact": 0.1378,
+   "match": true
+  },
+  {
+   "quantity": "CSC agent qwen3-8b diff R@10",
+   "main_text": 0.1017,
+   "artifact": 0.1017,
+   "match": true
+  },
+  {
+   "quantity": "CSC agent qwen3-8b CI lo",
+   "main_text": 0.0528,
+   "artifact": 0.0528,
+   "match": true
+  },
+  {
+   "quantity": "CSC agent qwen3-8b CI hi",
+   "main_text": 0.1522,
+   "artifact": 0.1522,
+   "match": true
+  },
+  {
+   "quantity": "CSC agent qwen2.5-32b-instruct diff R@10",
+   "main_text": 0.1028,
+   "artifact": 0.1028,
+   "match": true
+  },
+  {
+   "quantity": "CSC agent qwen2.5-32b-instruct CI lo",
+   "main_text": 0.055,
+   "artifact": 0.055,
+   "match": true
+  },
+  {
+   "quantity": "CSC agent qwen2.5-32b-instruct CI hi",
+   "main_text": 0.1533,
+   "artifact": 0.1533,
+   "match": true
+  },
+  {
+   "quantity": "LSE agent qwen2.5-7b-instruct diff R@50",
+   "main_text": 0.066,
+   "artifact": 0.066032,
+   "match": true
+  },
+  {
+   "quantity": "LSE agent qwen2.5-7b-instruct CI lo",
+   "main_text": 0.0387,
+   "artifact": 0.038712,
+   "match": true
+  },
+  {
+   "quantity": "LSE agent qwen2.5-7b-instruct CI hi",
+   "main_text": 0.0934,
+   "artifact": 0.093379,
+   "match": true
+  },
+  {
+   "quantity": "LSE agent qwen3-8b diff R@50",
+   "main_text": 0.0644,
+   "artifact": 0.06439,
+   "match": true
+  },
+  {
+   "quantity": "LSE agent qwen3-8b CI lo",
+   "main_text": 0.0462,
+   "artifact": 0.046183,
+   "match": true
+  },
+  {
+   "quantity": "LSE agent qwen3-8b CI hi",
+   "main_text": 0.0843,
+   "artifact": 0.084328,
+   "match": true
+  },
+  {
+   "quantity": "CSC graph-only target rate, correct",
+   "main_text": 0.312,
+   "artifact": 0.3115,
+   "match": true
+  },
+  {
+   "quantity": "CSC graph-only target rate, rewired",
+   "main_text": 0.081,
+   "artifact": 0.0808,
+   "match": true
+  },
+  {
+   "quantity": "CSC episodes with >=1 graph-only, correct",
+   "main_text": 0.433,
+   "artifact": 0.4333,
+   "match": true
+  },
+  {
+   "quantity": "CSC episodes with >=1 graph-only, rewired",
+   "main_text": 0.127,
+   "artifact": 0.1267,
+   "match": true
+  }
+ ]
+}

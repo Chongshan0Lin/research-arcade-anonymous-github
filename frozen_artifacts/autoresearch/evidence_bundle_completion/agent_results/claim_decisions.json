@@ -1,0 +1,53 @@
+{
+ "protocol": "ebc_controlled_v1",
+ "primary_comparison": "correct_traversal_agent > rewired_traversal_agent on macro target recall@10",
+ "declared_before_inference": true,
+ "n_resamples": 10000,
+ "seed": 20260925,
+ "uptake_gate": 0.9,
+ "note": "Explicitly post-hoc controlled protocol with a disclosed mandatory minimum research phase. Low traversal uptake is reported as inconclusive uptake, never as evidence against graph utility. A stored graph path is retrieval provenance, not semantic proof that the paper supports the paragraph.",
+ "by_model": {
+  "qwen2.5-32b-instruct": {
+   "traversal_uptake": 0.94,
+   "graph_supports_evidence_bundle_completion": "Supported",
+   "sequential_interaction_beats_matched_pool": "Not supported",
+   "compact_hybrid_beats_one_shot_hybrid": "Not supported",
+   "compiled_hybrid_beats_raw_traversal": "Not supported",
+   "invariants": {
+    "paired_n": 150,
+    "prompt_schema_identical": true,
+    "graph_hashes_differ": true,
+    "degree_hashes_match": true,
+    "observations_not_universally_identical": true
+   }
+  },
+  "qwen2.5-7b-instruct": {
+   "traversal_uptake": 0.9733,
+   "graph_supports_evidence_bundle_completion": "Supported",
+   "sequential_interaction_beats_matched_pool": "Not supported",
+   "compact_hybrid_beats_one_shot_hybrid": "Not supported",
+   "compiled_hybrid_beats_raw_traversal": "Not supported",
+   "invariants": {
+    "paired_n": 150,
+    "prompt_schema_identical": true,
+    "graph_hashes_differ": true,
+    "degree_hashes_match": true,
+    "observations_not_universally_identical": true
+   }
+  },
+  "qwen3-8b": {
+   "traversal_uptake": 0.98,
+   "graph_supports_evidence_bundle_completion": "Supported",
+   "sequential_interaction_beats_matched_pool": "Not supported",
+   "compact_hybrid_beats_one_shot_hybrid": "Not supported",
+   "compiled_hybrid_beats_raw_traversal": "Supported",
+   "invariants": {
+    "paired_n": 150,
+    "prompt_schema_identical": true,
+    "graph_hashes_differ": true,
+    "degree_hashes_match": true,
+    "observations_not_universally_identical": true
+   }
+  }
+ }
+}

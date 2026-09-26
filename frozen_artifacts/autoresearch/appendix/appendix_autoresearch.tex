@@ -1,0 +1,521 @@
+% =====================================================================
+% Appendix: AutoResearch evidence-discovery workflows
+% Generated 2026-09-26 from frozen artifacts of run graphauto_20260925_035919_027d9a.
+% Every number is traceable; see Table~\ref{tab:ar-manifest}.
+% Requires: booktabs. Uses no vertical rules, 3-decimal precision.
+% =====================================================================
+\section{AutoResearch Evidence-Discovery Workflows}
+\label{appendix:autoresearch}
+
+This appendix gives the complete account of the two AutoResearch evidence-discovery workflows
+summarised in the main text: \emph{Citation Set Completion} (CSC) and \emph{Literature Set
+Expansion} (LSE). The main-text tables report only the causal contrast (correct minus rewired
+connectivity); here we report absolute performance for every condition, the construction funnels,
+the diagnostics that localise where the graph helps, and the frozen artifacts needed to reproduce
+each number.
+
+\subsection{Instance Construction}
+\label{appendix:ar-construction}
+
+CSC instances are built from real paragraphs containing $2$--$5$ resolved citations. One citation
+is revealed as an \emph{anchor}; the remaining citations form the target set the system must
+recover. LSE instances take a source paper's title and abstract only, with citation markers
+scrubbed, and ask for a ranked set of earlier relevant papers; the source's own resolved earlier
+references serve as weak supervision.
+
+Table~\ref{tab:ar-funnel} separates the large construction pool from the small frozen evaluation
+samples. Note the asymmetry: CSC filters a $1.2$M-edge pool down to $57{,}947$ instances and then
+freezes $5{,}000$ for fixed retrieval, whereas LSE screens source papers directly.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Construction funnel for both workflows. Blank entries indicate a stage that the
+corresponding pipeline does not define, not a missing measurement.}
+\label{tab:ar-funnel}
+\begin{tabular}{llrlr}
+\toprule
+Stage & CSC quantity & CSC & LSE quantity & LSE \\
+\midrule
+Raw candidate units & paragraph--citation edges & 1{,}200{,}010 & source papers considered & 41{,}054 \\
+Targets resolved to corpus & resolved arXiv target & 957{,}831 & --- & --- \\
+Units after resolution & distinct paragraphs & 165{,}555 & eligible sources (E1--E5) & 27{,}267 \\
+Dropped: temporal & future-dated target & 2{,}358 & --- & --- \\
+Dropped: context quality & context too short & 2{,}351 & --- & --- \\
+Target-set size admissible & bundle size $2$--$5$ & 60{,}298 & --- & --- \\
+Constructed instances & instances built & 57{,}947 & --- & --- \\
+Evaluation split & test & 8{,}464 & screen (of 1{,}200; split, not exclusion) & 909 \\
+\textbf{Frozen: fixed retrieval} & general slice & \textbf{5{,}000} & frozen sources (dev 291 + screen 909) & \textbf{1{,}200} \\
+\textbf{Frozen: agent evaluation} & agent subset & \textbf{150} & agent subset & \textbf{150} \\
+Held-out development ids & dev ids & 60 & dev split & 291 \\
+Temporal / source-edge violations & audited & 0 & audited & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CSC is split by source paper ($70/15/15$) so no source appears in more than one split; target-set
+sizes in the frozen slice are $1/2/3/4$ remaining targets for $2695/1252/680/373$ instances.
+LSE is split by $(\text{year}, \text{primary category})$ cluster, with whole clusters assigned to
+dev or screen ($116$ clusters, $13$ held out). LSE gold sets have mean $16.6$ and median $14$
+references (range $5$--$88$).
+
+\paragraph{The LSE $1200 \rightarrow 909$ step is a split, not an exclusion.}
+All $1{,}200$ frozen LSE sources are retained; none is discarded after freezing. The frozen set is
+partitioned by a \emph{predeclared} grouped development/screening split on
+$(\text{year}, \text{primary arXiv category})$ clusters: $13$ of $116$ clusters
+($291$ sources) form the development split and the remaining $103$ clusters ($909$ sources) form
+the screening split, with $291 + 909 = 1200$ exactly. Whole clusters are assigned to one side, so
+the realised proportion ($24.3\%$ development) does not land exactly on the nominal $20\%$. The
+\texttt{split} label is stored per record inside \texttt{frozen\_ids.jsonl} itself.
+
+The split rule is recorded in \texttt{construction\_manifest.json} under
+\texttt{predeclared\_rules.splits}, and the ordering is verifiable from file timestamps: the frozen
+identifiers and their split labels were written at 04:45, whereas the first retrieval numbers
+(\texttt{retrieval\_results.csv}) appeared at 05:27 and the gate decision at 05:33 --- roughly $40$
+minutes later. No split assignment could have been informed by an observed arm score.
+
+\textbf{The screening split ($n{=}909$) is the single canonical evaluation set for LSE fixed
+retrieval}, and it is the set the main text reports. Metrics were also computed over all $1{,}200$
+frozen sources and are retained in the artifacts for completeness; that superset passes the launch
+gate as well ($+0.2384$ versus BM25, $+0.1790$ versus rewired hybrid on R@50), so reporting the
+screening split is not a choice among a passing and a failing variant. The two must not be mixed in
+a single table. The $150$ LSE agent instances are drawn entirely from the screening split, giving a
+strict nesting $1200 \supset 909 \supset 150$, and the development split was used only for
+interface debugging and the agent smoke test.
+
+\paragraph{Weak supervision.} An author's bibliography is incomplete and selective. On the frozen
+LSE set the mean unresolved-reference rate is $0.68$, so roughly two-thirds of bibliography entries
+never resolve to an in-corpus paper. Absolute LSE recall is therefore a \emph{floor}, not a
+measurement of topical recall, and only paired between-condition differences are interpretable.
+
+\subsection{Temporal Validity and Leakage Prevention}
+\label{appendix:ar-leakage}
+
+For a source paper $s$ with cutoff $t_s$: anchors and targets must be available strictly by $t_s$;
+$s$ is excluded from all candidate pools; every citation and paragraph edge emitted by $s$ is
+removed; traversal evidence is built only from papers available before $t_s$; and the evaluation
+paragraph itself may not create the anchor--target relation.
+
+\paragraph{An identity defect that defeated masking.} The citation graph mixes arXiv identifier
+spellings: \texttt{cites} edges are version-stripped, but $73{,}178$ of $165{,}555$
+\texttt{has\_paragraph} edges carry an explicit version (e.g.\ \texttt{paper:2002.08165v2}).
+$6{,}198$ base identifiers therefore existed as two unconnected nodes. Masking on the literal
+source identifier left the source reachable through its versioned twin, which is exactly the
+forbidden source-derived channel. Exposure was $45.4\%$ of CSC instances and $223/1200$ ($18.6\%$)
+of LSE sources, leaving $3{,}070$ source-owned paragraph nodes unmasked. All paper identity is now
+resolved on the version-stripped base identifier in every graph variant, and degree preservation was
+re-verified after the merge. Both workflows were rebuilt and re-audited; superseded artifacts are
+preserved under \texttt{superseded\_v1/} and were not used for any reported number.
+
+After the fix, the CSC audit checked $2{,}204{,}525$ candidates across all arms and found $0$
+violations; LSE found $0$ future-dated candidates, $0$ source-in-results, and $44{,}346$ blocked
+source-edge traversal attempts, with an independent re-audit of $15{,}000$ returned identifiers
+against a freshly queried date table.
+
+\subsection{Retrieval and Graph Conditions}
+\label{appendix:ar-conditions}
+
+Correct and rewired conditions differ \emph{only} in the backing adjacency: node identities, text,
+metadata, degrees, prompts, tool schemas and budgets are identical, which is asserted at run time
+by comparing a prompt/schema hash. The rewired graph is the degree-preserving variant
+($989{,}123$ edges in both; per-relation in- and out-degree sequences element-wise identical). We
+use untyped connectivity throughout.
+
+Graph expansion scores candidates by Adamic--Adar proximity from the revealed anchor over at most
+two hops with a fixed one-hop bonus, label-free and identical across variants. Hybrid conditions
+fuse BM25 and graph rankings by reciprocal rank fusion ($k{=}60$). CSC uses $K{=}50$ retrieved
+candidates; LSE uses $K{=}50$ with $10$ BM25 seeds, at most three hops, and a per-node cap of $25$.
+
+\subsection{Interactive Agent Protocol}
+\label{appendix:ar-protocol}
+
+Agents run a stateful multi-turn loop. Intermediate actions and final answers use \emph{separate}
+parsers, so an unrecognised object is malformed rather than silently accepted as an answer. Agents
+receive no prepopulated candidate list.
+
+\paragraph{Disclosed intervention.} Each condition enforces a \emph{mandatory minimum research
+phase} before an answer is accepted (flat: at least one \texttt{search}; graph conditions: at least
+one \texttt{search} and one \texttt{traverse}; compact hybrid: at least one \texttt{hybrid\_search}).
+A premature finalisation is refused with a deterministic message and costs no tool call. This is
+part of the protocol, not an observed model behaviour, and is required because under a natural
+action interface neither model invoked any tool at all (Appendix~\ref{appendix:ar-diagnostics}).
+
+Budgets, identical in every condition: at most $8$ tool calls, $6{,}000$ observation tokens,
+$10$ candidates per call, one deterministic format-repair turn, and one forced-answer turn if the
+tool budget is exhausted without a voluntary answer. Checkpoints are Qwen2.5-7B-Instruct,
+Qwen3-8B, and Qwen2.5-32B-Instruct (GPTQ Int4, the only quantised model); decoding is greedy with
+a transcript-keyed response cache so identical transcripts yield identical responses across
+conditions.
+
+\subsection{Evaluation Metrics and Statistical Testing}
+\label{appendix:ar-stats}
+
+CSC reports macro target recall at $5$ and $10$, set $F_1$, set recall and R-precision; LSE reports
+recall and nDCG at $10$, $20$ and $50$ plus MAP@$50$. Invalid or missing answers score zero on every
+effectiveness metric and are counted separately as an unanswered rate.
+
+All tests are paired over instances: bootstrap confidence intervals with $10{,}000$ resamples and
+paired sign-flip permutation tests with $10{,}000$ permutations, seed $20260925$, resampling unit =
+instance. Holm correction is applied only within an explicitly declared confirmatory family, per
+model, never pooled across models. The declared primary comparisons, fixed in code before any
+inference, are \texttt{correct} versus \texttt{rewired} traversal on CSC recall@$10$ and on LSE
+recall@$50$.
+
+\subsection{Complete Retrieval Results}
+\label{appendix:ar-retrieval}
+
+Table~\ref{tab:ar-fixed} gives every fixed-retrieval arm, including the negative controls that
+rule out degree and hub artifacts. The exploratory GraphHard slice is deliberately excluded from
+this table and discussed separately in Appendix~\ref{appendix:ar-diagnostics}.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Complete fixed-retrieval results. CSC: general slice, $n{=}5{,}000$. LSE: screen split,
+$n{=}909$. Blank cells are metrics the corresponding pipeline does not compute.}
+\label{tab:ar-fixed}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Arm & R@5 & R@10 & R@20 & R@50 & MRR & nDCG@50 & set $F_1$ \\
+\midrule
+\multicolumn{8}{l}{\emph{Citation Set Completion}} \\
+BM25 & 0.212 & 0.276 & 0.352 & & 0.223 & & 0.076 \\
+Graph, rewired & 0.031 & 0.056 & 0.091 & & 0.035 & & 0.016 \\
+Graph, correct & 0.350 & 0.451 & 0.547 & & 0.339 & & 0.125 \\
+Hybrid, rewired & 0.185 & 0.258 & 0.340 & & 0.167 & & 0.070 \\
+\textbf{Hybrid, correct} & \textbf{0.389} & \textbf{0.511} & \textbf{0.630} & & \textbf{0.375} & & \textbf{0.141} \\
+Graph, random anchor & 0.009 & 0.015 & 0.023 & & 0.009 & & 0.004 \\
+Graph, degree-matched anchor & 0.016 & 0.029 & 0.047 & & 0.017 & & 0.008 \\
+Anchor text only & 0.132 & 0.184 & 0.247 & & 0.134 & & 0.050 \\
+\midrule
+\multicolumn{8}{l}{\emph{Literature Set Expansion}} \\
+BM25 & & 0.078 & 0.129 & 0.191 & & 0.177 & \\
+Graph, rewired & & & 0.096 & 0.153 & & 0.124 & \\
+Graph, correct & & & 0.283 & 0.401 & & 0.366 & \\
+Hybrid, rewired & & & 0.158 & 0.252 & & 0.203 & \\
+\textbf{Hybrid, correct} & & & \textbf{0.288} & \textbf{0.427} & & 0.362 & \\
+Graph, citation edges only & & & 0.283 & 0.401 & & 0.366 & \\
+Graph, paragraph edges only & & & 0.152 & 0.180 & & 0.176 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Primary fixed-retrieval contrasts. Paired bootstrap, $10{,}000$ resamples.
+$p$ values reach the permutation floor ($<10^{-4}$); Holm-adjusted $p=2{\times}10^{-4}$.}
+\label{tab:ar-fixed-comp}
+\begin{tabular}{llrrr}
+\toprule
+Workflow & Contrast & Metric & Difference & 95\% CI \\
+\midrule
+CSC & Hybrid correct $-$ hybrid rewired & R@20 & $+0.291$ & $[+0.279, +0.303]$ \\
+CSC & Graph correct $-$ graph rewired & R@20 & $+0.457$ & $[+0.444, +0.470]$ \\
+CSC & Hybrid correct $-$ BM25 & R@20 & $+0.279$ & $[+0.266, +0.290]$ \\
+CSC & Graph correct $-$ degree-matched anchor & R@20 & $+0.500$ & $[+0.488, +0.513]$ \\
+LSE & Hybrid correct $-$ hybrid rewired & R@50 & $+0.175$ & $[+0.164, +0.186]$ \\
+LSE & Hybrid correct $-$ BM25 & R@50 & $+0.235$ & $[+0.224, +0.246]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The degree-matched-anchor control is the decisive one: a \emph{different} paper with the same degree
+reaches R@20 $=0.047$, against $0.547$ for the true anchor. The effect is anchor identity combined
+with correct topology, not degree or proximity to hubs.
+
+\subsection{Complete Agent Results}
+\label{appendix:ar-agents}
+
+Table~\ref{tab:ar-agent-abs} gives absolute performance, which the main text does not report. Three
+comparisons matter and are separable here: correct versus rewired connectivity (the causal effect of
+topology), graph access versus flat search (the value of the tool), and agent versus matched replay
+over the identical observed candidate pool (the value of sequential interaction).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Absolute agent results, $n{=}150$ frozen instances per cell. ``Replay'' is a one-shot
+selector over exactly the candidate pool that agent observed. Answered rate excludes parser
+failures and budget exhaustion without an answer.}
+\label{tab:ar-agent-abs}
+\begin{tabular}{llrrrrr}
+\toprule
+Model & Condition & R@5 & R@10 & set $F_1$ & MRR & Answered \\
+\midrule
+\multicolumn{7}{l}{\emph{Citation Set Completion}} \\
+Qwen2.5-7B & Flat search & 0.128 & 0.130 & 0.055 & 0.128 & 0.727 \\
+Qwen2.5-7B & \quad replay & 0.189 & 0.198 & 0.081 & 0.181 & 0.993 \\
+Qwen2.5-7B & Rewired traversal & 0.130 & 0.137 & 0.058 & 0.142 & 0.927 \\
+Qwen2.5-7B & Correct traversal & 0.214 & 0.226 & 0.096 & 0.207 & 0.820 \\
+Qwen2.5-7B & \quad replay & 0.215 & 0.225 & 0.093 & 0.193 & 0.987 \\
+Qwen2.5-7B & Compact hybrid & 0.264 & 0.278 & 0.119 & 0.235 & 0.740 \\
+Qwen2.5-7B & Fixed correct hybrid & 0.383 & 0.405 & 0.177 & 0.356 & 1.000 \\
+Qwen2.5-7B & Fixed BM25 & 0.217 & 0.221 & 0.096 & 0.251 & 0.993 \\
+\addlinespace
+Qwen3-8B & Flat search & 0.249 & 0.254 & 0.105 & 0.280 & 0.993 \\
+Qwen3-8B & \quad replay & 0.211 & 0.216 & 0.088 & 0.228 & 0.987 \\
+Qwen3-8B & Rewired traversal & 0.202 & 0.205 & 0.085 & 0.202 & 0.993 \\
+Qwen3-8B & Correct traversal & 0.302 & 0.307 & 0.130 & 0.326 & 0.993 \\
+Qwen3-8B & \quad replay & 0.282 & 0.299 & 0.126 & 0.277 & 0.993 \\
+Qwen3-8B & Compact hybrid & 0.399 & 0.426 & 0.183 & 0.386 & 0.993 \\
+Qwen3-8B & Fixed correct hybrid & 0.410 & 0.427 & 0.186 & 0.375 & 0.993 \\
+Qwen3-8B & Fixed BM25 & 0.229 & 0.236 & 0.103 & 0.275 & 1.000 \\
+\addlinespace
+Qwen2.5-32B & Rewired traversal & 0.235 & 0.248 & 0.104 & 0.289 & 0.993 \\
+Qwen2.5-32B & Correct traversal & 0.336 & 0.351 & 0.147 & 0.369 & 1.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Absolute agent results for Literature Set Expansion, $n{=}150$. Qwen2.5-7B answered only
+$54$--$64\%$ of episodes, so its absolute values are depressed; the paired contrast remains valid
+because validity is \emph{lower} in the correct condition.}
+\label{tab:ar-agent-lse}
+\begin{tabular}{llrrrrr}
+\toprule
+Model & Condition & R@10 & R@20 & R@50 & nDCG@50 & Answered \\
+\midrule
+Qwen2.5-7B & Rewired snowballing & 0.041 & 0.055 & 0.081 & 0.075 & 0.640 \\
+Qwen2.5-7B & Correct snowballing & 0.044 & 0.093 & 0.147 & 0.116 & 0.540 \\
+\addlinespace
+Qwen3-8B & Flat literature agent & 0.070 & 0.100 & 0.123 & 0.134 & 0.987 \\
+Qwen3-8B & \quad replay & 0.078 & 0.094 & 0.123 & 0.139 & 1.000 \\
+Qwen3-8B & Rewired snowballing & 0.067 & 0.091 & 0.111 & 0.134 & 0.987 \\
+Qwen3-8B & Correct snowballing & 0.074 & 0.121 & 0.175 & 0.171 & 0.987 \\
+Qwen3-8B & \quad replay & 0.078 & 0.124 & 0.180 & 0.167 & 1.000 \\
+Qwen3-8B & Compact hybrid agent & 0.170 & 0.239 & 0.281 & 0.287 & 0.987 \\
+Qwen3-8B & \quad replay & 0.166 & 0.244 & 0.289 & 0.283 & 1.000 \\
+Qwen3-8B & Fixed correct hybrid & 0.151 & 0.223 & 0.423 & 0.342 & 1.000 \\
+Qwen3-8B & Fixed BM25 & 0.078 & 0.108 & 0.176 & 0.168 & 1.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Primary agent contrasts, paired over $n{=}150$ instances, Holm-adjusted within each
+model's confirmatory family.}
+\label{tab:ar-agent-comp}
+\begin{tabular}{llrrr}
+\toprule
+Workflow / Model & Contrast & Difference & 95\% CI & Holm $p$ \\
+\midrule
+CSC, Qwen2.5-7B & Correct $-$ rewired, R@10 & $+0.0889$ & $[+0.0428, +0.1378]$ & $0.0012$ \\
+CSC, Qwen3-8B & Correct $-$ rewired, R@10 & $+0.1017$ & $[+0.0528, +0.1522]$ & $0.0006$ \\
+CSC, Qwen2.5-32B & Correct $-$ rewired, R@10 & $+0.1028$ & $[+0.0550, +0.1533]$ & $0.0001$ \\
+\addlinespace
+LSE, Qwen2.5-7B & Correct $-$ rewired, R@50 & $+0.0660$ & $[+0.0387, +0.0934]$ & $0.0001$ \\
+LSE, Qwen3-8B & Correct $-$ rewired, R@50 & $+0.0644$ & $[+0.0462, +0.0843]$ & $0.0006$ \\
+\addlinespace
+CSC, Qwen3-8B & Correct traversal $-$ its replay, R@10 & $+0.0072$ & $[-0.0317, +0.0456]$ & $1.000$ \\
+CSC, Qwen3-8B & Compact hybrid $-$ its replay, R@10 & $+0.0428$ & $[+0.0067, +0.0817]$ & $0.139$ \\
+LSE, Qwen3-8B & Correct snowballing $-$ its replay, R@50 & $-0.0046$ & $[-0.0119, -0.0002]$ & $0.494$ \\
+LSE, Qwen3-8B & Compact hybrid $-$ fixed hybrid, R@50 & $-0.1421$ & $[-0.1713, -0.1123]$ & $0.0006$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Three findings, stated at the strength the data supports.
+
+\textbf{Correct connectivity helps, and replicates.} The correct-minus-rewired contrast is positive
+and Holm-significant on all three models for CSC and both models for LSE, at $94$--$98\%$ traversal
+uptake, so it is an effect of topology rather than a failed-uptake artifact. Effect sizes are stable
+across a $4.5{\times}$ parameter range.
+
+\textbf{Sequential interaction adds nothing detectable.} No agent beats its own matched-pool replay
+after correction; several point estimates are slightly negative. Whatever the agent gains comes from
+the candidate pool its tools assemble, not from planning across turns. We therefore do \emph{not}
+claim that agents outperform matched replays.
+
+\textbf{A compiled retrieval interface beats agentic traversal.} On LSE the fixed correct-hybrid
+list reaches R@50 $=0.423$ while the best agent reaches $0.281$; the compact-hybrid agent is
+$0.142$ \emph{below} the fixed list it was effectively given ($p_{\text{Holm}}=0.0006$). On CSC the
+fixed correct-hybrid list ($0.427$) matches the best agent ($0.426$).
+
+\subsection{Evidence-Access and Tool-Use Diagnostics}
+\label{appendix:ar-diagnostics}
+
+Table~\ref{tab:ar-access} localises the effect. Correct connectivity roughly doubles the rate at
+which a target is ever observed, and surfaces about four times as many targets that lexical search
+never returns.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Candidate access and tool utilisation, CSC, $n{=}150$. ``Graph-only'' targets are those
+observed under this condition but never observed by the matched flat-search agent.}
+\label{tab:ar-access}
+\begin{tabular}{llrrrrrr}
+\toprule
+Model & Condition & Target seen & Target sel. & Obs.\ cands & Calls & Uptake & Graph-only \\
+\midrule
+Qwen2.5-7B & Flat search & 0.300 & 0.123 & 22.1 & 6.22 & --- & --- \\
+Qwen2.5-7B & Rewired traversal & 0.285 & 0.127 & 45.1 & 7.25 & 0.973 & 0.119 \\
+Qwen2.5-7B & Correct traversal & 0.615 & 0.215 & 36.7 & 6.71 & 0.973 & 0.392 \\
+\addlinespace
+Qwen3-8B & Flat search & 0.311 & 0.231 & 21.3 & 4.75 & --- & --- \\
+Qwen3-8B & Rewired traversal & 0.265 & 0.185 & 21.9 & 2.51 & 0.980 & 0.081 \\
+Qwen3-8B & Correct traversal & 0.542 & 0.288 & 21.0 & 2.45 & 0.980 & 0.311 \\
+\addlinespace
+Qwen2.5-32B & Rewired traversal & 0.365 & 0.231 & 32.8 & 5.63 & 0.940 & 0.365 \\
+Qwen2.5-32B & Correct traversal & 0.589 & 0.327 & 28.2 & 5.20 & 0.940 & 0.589 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For Qwen3-8B, at least one graph-only target is surfaced in $43.3\%$ of correct-graph episodes
+against $12.7\%$ of rewired episodes, and graph-only targets are $31.2\%$ of all targets under
+correct connectivity against $8.1\%$ under rewired. These four numbers are computed for Qwen3-8B
+with the matched flat-search agent as the reference condition; the corresponding values for the
+other checkpoints are in Table~\ref{tab:ar-access}.
+
+\paragraph{Natural versus controlled interaction.} Under a natural action interface, where the first
+turn already supplied a candidate list and the prompt requested an answer, \emph{no} model invoked
+any tool: $0$ tool calls in $800$ episodes for Qwen2.5-7B and Qwen3-8B, and $0$ in $150$ episodes
+for Qwen2.5-32B, with all three natural conditions returning numerically identical scores because
+they degenerate to the same one-shot selection. Repairing the interface raised uptake to $100\%$ for
+the same checkpoints on the same instances. Spontaneous graph-tool use by models of this scale is
+therefore not supported; the controlled results above measure the value of connectivity \emph{given}
+that the tool is used.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Efficiency and faithfulness, CSC, $n{=}150$. Evidence faithfulness is the fraction of
+answers citing only observed candidates. Path faithfulness re-verifies each stored
+anchor-to-target path in that condition's own pre-cutoff graph.}
+\label{tab:ar-faith}
+\begin{tabular}{llrrrrr}
+\toprule
+Model & Condition & Evid.\ faith. & Path faith. & Obs.\ tokens & Tool err. & Parser val. \\
+\midrule
+Qwen3-8B & Flat search & 1.000 & --- & 2883 & 7 & 0.965 \\
+Qwen3-8B & Rewired traversal & 1.000 & 1.000 & 1856 & 3 & 0.990 \\
+Qwen3-8B & Correct traversal & 1.000 & 1.000 & 1822 & 2 & 0.990 \\
+Qwen3-8B & Compact hybrid & 1.000 & 1.000 & 2257 & 9 & 0.976 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Evidence faithfulness is $1.000$ in every condition: no answer ever cited an identifier the agent
+had not observed. Every stored graph path re-verified in its own condition graph. A verified path is
+\emph{retrieval provenance} — it records how a candidate was reachable before the cutoff — and is
+not evidence that the paper supports the paragraph.
+
+\subsection{Failure Analysis and Example Traces}
+\label{appendix:ar-failures}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Mutually exclusive primary failure categories, CSC, Qwen3-8B, $n{=}150$ per condition.}
+\label{tab:ar-failures}
+\begin{tabular}{lrrrr}
+\toprule
+& \multicolumn{2}{c}{Correct traversal} & \multicolumn{2}{c}{Rewired traversal} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Category & Count & Frac. & Count & Frac. \\
+\midrule
+Recovered and faithful & 62 & 0.413 & 42 & 0.280 \\
+Target never retrieved & 47 & 0.313 & 92 & 0.613 \\
+Target observed but not selected & 40 & 0.267 & 15 & 0.100 \\
+Invalid answer / parser failure & 1 & 0.007 & 1 & 0.007 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Correct connectivity halves the dominant failure mode — never retrieving the target at all drops
+from $61.3\%$ to $31.3\%$ — while increasing the share of episodes where the target was seen but not
+chosen ($10.0\%\rightarrow26.7\%$). The residual bottleneck is selection, not discovery.
+
+\paragraph{Matched traces.} Instance \texttt{EBC-3452627} ($2$ targets, anchor
+\texttt{2009.02252}) isolates the mechanism. All three conditions receive byte-identical prompts.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Matched traces on instance \texttt{EBC-3452627}. The correct and rewired agents emit the
+\emph{same} two actions with the \emph{same} query; only the adjacency behind \texttt{traverse}
+differs.}
+\label{tab:ar-traces}
+\begin{tabular}{llll}
+\toprule
+Condition & Actions & Outcome & R@10 \\
+\midrule
+Correct traversal & \texttt{search}(``retrieval augmented generation & both targets recovered; & \textbf{1.000} \\
+ & \quad benchmarks''), \texttt{traverse}(2009.02252) & \texttt{1705.03551} first seen & \\
+ & & at call 2, 1 hop from anchor & \\
+\addlinespace
+Rewired traversal & identical two actions, identical query & neither target returned & 0.000 \\
+\addlinespace
+Flat search & \texttt{search} $\times 8$; the same query repeated & neither target returned & 0.000 \\
+ & seven times after the first & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The correct agent recovers both targets in two calls, with the provenance record showing target
+\texttt{1705.03551} first observed at call $2$ via \texttt{traverse}, one hop from the anchor, path
+verified in the pre-cutoff graph. The rewired agent behaves identically and retrieves neither
+target, which is the cleanest available demonstration that the gain comes from topology rather than
+from the agent's policy. The flat agent, lacking traversal, exhausts its budget by re-issuing one
+query seven times — a degenerate-repetition failure mode visible in the flat condition's higher
+observation-token cost in Table~\ref{tab:ar-faith}.
+
+\subsection{Reproduction and Frozen Artifacts}
+\label{appendix:ar-repro}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Artifact manifest. Paths are relative to
+\texttt{results/graph\_autoresearch/graphauto\_20260925\_035919\_027d9a/}. CSC on disk is named
+\texttt{evidence\_bundle\_completion}.}
+\label{tab:ar-manifest}
+\begin{tabular}{lll}
+\toprule
+Table & Source artifact & Generating script \\
+\midrule
+\ref{tab:ar-funnel} & \texttt{*/construction\_manifest.json} & \texttt{ebc\_build}, \texttt{literature\_set\_expansion} \\
+\ref{tab:ar-fixed} & \texttt{*/retrieval\_results.csv} & \texttt{ebc\_screen}, \texttt{literature\_set\_expansion} \\
+\ref{tab:ar-fixed-comp} & \texttt{*/retrieval\_comparisons.csv} & same \\
+\ref{tab:ar-agent-abs} & \texttt{*/agent\_results/metrics\_by\_condition.csv} & \texttt{ebc\_aggregate} \\
+\ref{tab:ar-agent-lse} & same & \texttt{litexp\_aggregate} \\
+\ref{tab:ar-agent-comp} & \texttt{*/agent\_results/paired\_comparisons.csv} & both aggregators \\
+\ref{tab:ar-access} & \texttt{candidate\_funnel.csv}, \texttt{tool\_utilization.csv}, & both aggregators \\
+ & \texttt{graph\_only\_discovery.csv} & \\
+\ref{tab:ar-faith} & \texttt{faithfulness.csv}, \texttt{tool\_utilization.csv} & both aggregators \\
+\ref{tab:ar-failures} & \texttt{agent\_results/failure\_taxonomy.json} & both aggregators \\
+\ref{tab:ar-traces} & \texttt{agent\_results/episodes/qwen3-8b/*.jsonl} & \texttt{appendix\_tables} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Frozen identifier files and their SHA-256 prefixes: CSC fixed retrieval
+$n{=}5000$ (\texttt{063b66b0ca51897f}), CSC agent $n{=}150$ (\texttt{2849d46ced72ed93}), LSE fixed
+retrieval $n{=}1200$ (\texttt{5b7eadacd40f892a}), LSE agent $n{=}150$ (\texttt{23429f6159c50b82}).
+Graph variants: correct \texttt{c33f0afd190858f3}, rewired \texttt{0232ea9a6a878502}, shared degree
+histogram \texttt{1ee5994e832b330b}.
+
+Reproduction, from the repository root, recomputing every table from frozen episode rows without
+any model inference:
+
+\begin{verbatim}
+python -m tasks.agentic_autoresearch.ebc_aggregate     --root <RUN>/evidence_bundle_completion/agent_results
+python -m tasks.agentic_autoresearch.litexp_aggregate  --root <RUN>/literature_set_expansion/agent_results
+python -m tasks.agentic_autoresearch.appendix_tables   --root <RUN>
+\end{verbatim}
+
+\paragraph{Quantities not recoverable from the current artifacts.} MAP and nDCG were not computed
+for CSC (the set-valued screening used set recall and set $F_1$ instead); a semantic-retrieval arm
+for LSE does not exist because the repository contains no paper-level dense index; per-episode
+latency for LSE is present in the episode rows but was not aggregated; and the identical-answer rate
+across graph perturbations was not logged, though it is recomputable from the episode rows by
+joining correct and rewired records on instance identifier. An optional Qwen2.5-32B run on LSE
+reached $91/150$ on one side of the paired comparison only and was stopped at that boundary; those
+rows are quarantined under \texttt{incomplete\_32b/} and excluded from every number reported here.

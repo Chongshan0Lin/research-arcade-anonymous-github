@@ -1,0 +1,130 @@
+{
+ "protocol": "litexp_controlled_v1",
+ "primary_comparison": [
+  "correct_snowballing_agent",
+  "rewired_snowballing_agent",
+  "recall@50"
+ ],
+ "confirmatory_family": [
+  [
+   "correct_snowballing_agent",
+   "rewired_snowballing_agent",
+   "recall@50"
+  ],
+  [
+   "compact_hybrid_literature_agent",
+   "correct_hybrid_fixed_list",
+   "recall@50"
+  ],
+  [
+   "flat_literature_agent",
+   "matched_pool_replay::flat_literature_agent",
+   "recall@50"
+  ],
+  [
+   "correct_snowballing_agent",
+   "matched_pool_replay::correct_snowballing_agent",
+   "recall@50"
+  ],
+  [
+   "rewired_snowballing_agent",
+   "matched_pool_replay::rewired_snowballing_agent",
+   "recall@50"
+  ],
+  [
+   "compact_hybrid_literature_agent",
+   "matched_pool_replay::compact_hybrid_literature_agent",
+   "recall@50"
+  ]
+ ],
+ "holm_scope": "confirmatory family only, per model; never pooled across models",
+ "duplicate_rows_skipped": 0,
+ "models": [
+  "qwen2.5-7b-instruct",
+  "qwen3-8b"
+ ],
+ "conditions_present": [
+  "bm25_fixed_list",
+  "compact_hybrid_literature_agent",
+  "correct_hybrid_fixed_list",
+  "correct_snowballing_agent",
+  "flat_literature_agent",
+  "matched_pool_replay::compact_hybrid_literature_agent",
+  "matched_pool_replay::correct_snowballing_agent",
+  "matched_pool_replay::flat_literature_agent",
+  "matched_pool_replay::rewired_snowballing_agent",
+  "rewired_snowballing_agent"
+ ],
+ "claims": {
+  "qwen2.5-7b-instruct": {
+   "claim": "Graph supports literature snowballing",
+   "scope": "correct_snowballing_agent vs rewired_snowballing_agent on recall@50, model qwen2.5-7b-instruct",
+   "decision": "Supported",
+   "comparison": {
+    "model": "qwen2.5-7b-instruct",
+    "family": "confirmatory",
+    "hi": "correct_snowballing_agent",
+    "lo": "rewired_snowballing_agent",
+    "metric": "recall@50",
+    "n_paired": 150,
+    "mean_hi": 0.146672,
+    "mean_lo": 0.080639,
+    "diff": 0.066032,
+    "ci_lo": 0.038712,
+    "ci_hi": 0.093379,
+    "p_two_sided": 9.999000099990002e-05,
+    "positive_ci": true,
+    "ci_excludes_zero": true,
+    "n_boot": 10000,
+    "n_perm": 10000,
+    "seed": 20260925,
+    "is_primary": true,
+    "p_holm": 9.999000099990002e-05,
+    "significant_holm": true
+   },
+   "tool_uptake": {
+    "hi": 1.0,
+    "lo": 1.0,
+    "gate": 0.9,
+    "note": "uptake below the gate means correct-vs-rewired equality is a failed intervention-uptake check, NEVER evidence that graph connectivity is useless"
+   },
+   "weak_label_note": "Scored against the source paper's own resolved earlier references: an incomplete and selective weak relevance label, not exhaustive ground truth. Absolute recall understates true topical recall; only paired between-condition differences are interpretable.",
+   "scoring_note": "Ids are scored independently of prose quality (runbook 4.4). Rationale text never enters an effectiveness metric; it is only checked for faithfulness and reported separately."
+  },
+  "qwen3-8b": {
+   "claim": "Graph supports literature snowballing",
+   "scope": "correct_snowballing_agent vs rewired_snowballing_agent on recall@50, model qwen3-8b",
+   "decision": "Supported",
+   "comparison": {
+    "model": "qwen3-8b",
+    "family": "confirmatory",
+    "hi": "correct_snowballing_agent",
+    "lo": "rewired_snowballing_agent",
+    "metric": "recall@50",
+    "n_paired": 150,
+    "mean_hi": 0.175342,
+    "mean_lo": 0.110952,
+    "diff": 0.06439,
+    "ci_lo": 0.046183,
+    "ci_hi": 0.084328,
+    "p_two_sided": 9.999000099990002e-05,
+    "positive_ci": true,
+    "ci_excludes_zero": true,
+    "n_boot": 10000,
+    "n_perm": 10000,
+    "seed": 20260925,
+    "is_primary": true,
+    "p_holm": 0.0005999400059994001,
+    "significant_holm": true
+   },
+   "tool_uptake": {
+    "hi": 1.0,
+    "lo": 1.0,
+    "gate": 0.9,
+    "note": "uptake below the gate means correct-vs-rewired equality is a failed intervention-uptake check, NEVER evidence that graph connectivity is useless"
+   },
+   "weak_label_note": "Scored against the source paper's own resolved earlier references: an incomplete and selective weak relevance label, not exhaustive ground truth. Absolute recall understates true topical recall; only paired between-condition differences are interpretable.",
+   "scoring_note": "Ids are scored independently of prose quality (runbook 4.4). Rationale text never enters an effectiveness metric; it is only checked for faithfulness and reported separately."
+  }
+ }
+}

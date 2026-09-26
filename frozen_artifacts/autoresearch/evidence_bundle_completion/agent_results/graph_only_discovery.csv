@@ -1,0 +1,9 @@
+model,condition,n,n_targets,targets_observed_not_by_flat,rate_of_targets,episodes_with_graph_only_target,rate_of_episodes,targets_selected_not_observed_by_flat,selected_rate
+qwen2.5-32b-instruct,correct_traversal_agent,150,260,153,0.5885,108,0.72,85,0.3269
+qwen2.5-32b-instruct,rewired_traversal_agent,150,260,95,0.3654,80,0.5333,60,0.2308
+qwen2.5-7b-instruct,correct_traversal_agent,150,260,102,0.3923,72,0.48,21,0.0808
+qwen2.5-7b-instruct,rewired_traversal_agent,150,260,31,0.1192,28,0.1867,7,0.0269
+qwen2.5-7b-instruct,compact_hybrid_agent,150,260,62,0.2385,52,0.3467,34,0.1308
+qwen3-8b,correct_traversal_agent,150,260,81,0.3115,65,0.4333,30,0.1154
+qwen3-8b,rewired_traversal_agent,150,260,21,0.0808,19,0.1267,9,0.0346
+qwen3-8b,compact_hybrid_agent,150,260,65,0.25,54,0.36,54,0.2077

@@ -1,0 +1,18 @@
+{
+ "protocol": "controlled_interaction_v1",
+ "note": "Explicitly post-hoc protocol with a disclosed mandatory minimum research phase. Not preregistered before the natural-action run.",
+ "by_model": {
+  "qwen2.5-7b-instruct": {
+   "traversal_uptake": 0.975,
+   "connectivity_helps_when_traversal_controlled": "Not supported",
+   "sequential_interaction_beats_matched_pool": "Not supported",
+   "compiled_hybrid_beats_raw_traversal": "Supported"
+  },
+  "qwen3-8b": {
+   "traversal_uptake": 0.98,
+   "connectivity_helps_when_traversal_controlled": "Not supported",
+   "sequential_interaction_beats_matched_pool": "Not supported",
+   "compiled_hybrid_beats_raw_traversal": "Not supported"
+  }
+ }
+}

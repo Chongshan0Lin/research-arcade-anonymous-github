@@ -1,0 +1,211 @@
+{
+ "passed": true,
+ "n_rows": 160,
+ "checks": [
+  {
+   "check": "20/20 terminal rows per condition/model",
+   "passed": true,
+   "detail": "{'qwen2.5-7b-instruct/compact_hybrid_controlled_agent': 20, 'qwen2.5-7b-instruct/correct_graph_controlled_agent': 20, 'qwen2.5-7b-instruct/flat_controlled_agent': 20, 'qwen2.5-7b-instruct/rewired_graph_controlled_agent': 20, 'qwen3-8b/compact_hybrid_controlled_agent': 20, 'qwen3-8b/correct_graph_controlled_agent': 20, 'qwen3-8b/flat_controlled_agent': 20, 'qwen3-8b/rewired_graph_controlled_agent': 20}"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct/compact_hybrid_controlled_agent] >=90% episodes with a successful tool call",
+   "passed": true,
+   "detail": "100%"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct/compact_hybrid_controlled_agent] mean successful tool calls >= 2.0",
+   "passed": true,
+   "detail": "5.55"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct/correct_graph_controlled_agent] >=90% episodes with a successful tool call",
+   "passed": true,
+   "detail": "95%"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct/correct_graph_controlled_agent] mean successful tool calls >= 2.0",
+   "passed": true,
+   "detail": "5.90"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct/flat_controlled_agent] >=90% episodes with a successful tool call",
+   "passed": true,
+   "detail": "100%"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct/flat_controlled_agent] mean successful tool calls >= 2.0",
+   "passed": true,
+   "detail": "4.55"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct/rewired_graph_controlled_agent] >=90% episodes with a successful tool call",
+   "passed": true,
+   "detail": "95%"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct/rewired_graph_controlled_agent] mean successful tool calls >= 2.0",
+   "passed": true,
+   "detail": "5.70"
+  },
+  {
+   "check": "[qwen3-8b/compact_hybrid_controlled_agent] >=90% episodes with a successful tool call",
+   "passed": true,
+   "detail": "100%"
+  },
+  {
+   "check": "[qwen3-8b/compact_hybrid_controlled_agent] mean successful tool calls >= 2.0",
+   "passed": true,
+   "detail": "4.95"
+  },
+  {
+   "check": "[qwen3-8b/correct_graph_controlled_agent] >=90% episodes with a successful tool call",
+   "passed": true,
+   "detail": "100%"
+  },
+  {
+   "check": "[qwen3-8b/correct_graph_controlled_agent] mean successful tool calls >= 2.0",
+   "passed": true,
+   "detail": "3.50"
+  },
+  {
+   "check": "[qwen3-8b/flat_controlled_agent] >=90% episodes with a successful tool call",
+   "passed": true,
+   "detail": "100%"
+  },
+  {
+   "check": "[qwen3-8b/flat_controlled_agent] mean successful tool calls >= 2.0",
+   "passed": true,
+   "detail": "4.50"
+  },
+  {
+   "check": "[qwen3-8b/rewired_graph_controlled_agent] >=90% episodes with a successful tool call",
+   "passed": true,
+   "detail": "100%"
+  },
+  {
+   "check": "[qwen3-8b/rewired_graph_controlled_agent] mean successful tool calls >= 2.0",
+   "passed": true,
+   "detail": "4.20"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct/compact_hybrid_controlled_agent] hybrid_search uptake >= 90%",
+   "passed": true,
+   "detail": "100%"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct/correct_graph_controlled_agent] search uptake >= 90%",
+   "passed": true,
+   "detail": "95%"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct/correct_graph_controlled_agent] traverse uptake >= 90%",
+   "passed": true,
+   "detail": "95%"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct/flat_controlled_agent] search uptake >= 90%",
+   "passed": true,
+   "detail": "100%"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct/rewired_graph_controlled_agent] search uptake >= 90%",
+   "passed": true,
+   "detail": "95%"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct/rewired_graph_controlled_agent] traverse uptake >= 90%",
+   "passed": true,
+   "detail": "95%"
+  },
+  {
+   "check": "[qwen3-8b/compact_hybrid_controlled_agent] hybrid_search uptake >= 90%",
+   "passed": true,
+   "detail": "100%"
+  },
+  {
+   "check": "[qwen3-8b/correct_graph_controlled_agent] search uptake >= 90%",
+   "passed": true,
+   "detail": "100%"
+  },
+  {
+   "check": "[qwen3-8b/correct_graph_controlled_agent] traverse uptake >= 90%",
+   "passed": true,
+   "detail": "100%"
+  },
+  {
+   "check": "[qwen3-8b/flat_controlled_agent] search uptake >= 90%",
+   "passed": true,
+   "detail": "100%"
+  },
+  {
+   "check": "[qwen3-8b/rewired_graph_controlled_agent] search uptake >= 90%",
+   "passed": true,
+   "detail": "100%"
+  },
+  {
+   "check": "[qwen3-8b/rewired_graph_controlled_agent] traverse uptake >= 90%",
+   "passed": true,
+   "detail": "100%"
+  },
+  {
+   "check": "action-parser validity >= 95%",
+   "passed": true,
+   "detail": "96.9%"
+  },
+  {
+   "check": "tool observations appear in subsequent context",
+   "passed": true,
+   "detail": "0 episodes with lost observations"
+  },
+  {
+   "check": "[qwen2.5-7b-instruct] correct/rewired observed pools not universally identical",
+   "passed": true,
+   "detail": "19/20 instances differ"
+  },
+  {
+   "check": "[qwen3-8b] correct/rewired observed pools not universally identical",
+   "passed": true,
+   "detail": "20/20 instances differ"
+  },
+  {
+   "check": "correct/rewired graph hashes differ",
+   "passed": true,
+   "detail": "{'correct_graph_controlled_agent': {'c33f0afd190858f3'}, 'rewired_graph_controlled_agent': {'0232ea9a6a878502'}}"
+  },
+  {
+   "check": "correct/rewired degree summaries match",
+   "passed": true,
+   "detail": "{'correct_graph_controlled_agent': {'1ee5994e832b330b'}, 'rewired_graph_controlled_agent': {'1ee5994e832b330b'}}"
+  },
+  {
+   "check": "no graph information reaches flat condition",
+   "passed": true,
+   "detail": "0 violations"
+  },
+  {
+   "check": "correct/rewired prompt+schema hashes identical per instance",
+   "passed": true,
+   "detail": "20 distinct"
+  },
+  {
+   "check": "cited evidence joins to observed records",
+   "passed": true,
+   "detail": "0 episodes cite unobserved ids"
+  },
+  {
+   "check": "zero temporal-leakage violations",
+   "passed": true,
+   "detail": "0 violations"
+  },
+  {
+   "check": "budgets enforced and truncation logged",
+   "passed": true,
+   "detail": "0 budget overruns"
+  },
+  {
+   "check": "matched_pool_hash reproduces observed pool",
+   "passed": true,
+   "detail": "recomputed from raw rows"
+  }
+ ]
+}
